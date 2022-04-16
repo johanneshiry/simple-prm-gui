@@ -1,37 +1,39 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ContactService} from "../../services/contact.service";
 import {Contact} from "../../models/contact.model";
+import {ApiContact} from "../../models/api-contact.model";
 
 @Component({
-  selector: 'app-contacts-list',
-  templateUrl: './contacts-list.component.html',
-  styleUrls: ['./contacts-list.component.scss']
+    selector: 'app-contacts-list',
+    templateUrl: './contacts-list.component.html',
+    styleUrls: ['./contacts-list.component.scss']
 })
 export class ContactsListComponent implements OnInit {
-  contacts?: Contact[];
-  currentContact?: Contact;
-  currentIndex = -1;
-  title = '';
+    contacts?: Contact[];
+    currentContact?: Contact;
+    currentIndex = -1;
+    title = '';
 
-  constructor(private contactService: ContactService) { }
+    constructor(private contactService: ContactService) {
+    }
 
-  ngOnInit(): void {
-    this.retrieveContacts();
-  }
+    ngOnInit(): void {
+        this.retrieveContacts();
+    }
 
-  retrieveContacts(): void{
-    this.contactService.getAll().subscribe({
-      next: (contacts: Contact[]) => {
-        this.contacts = contacts;
-        console.log(contacts)
-      },
-      error: (e) => console.error(e)
-    });
-  }
+    retrieveContacts(): void {
+        this.contactService.getAll().subscribe({
+                next: (apiContacts: ApiContact[]) => {
+                    this.contacts = apiContacts.map(apiContact => new Contact(apiContact))
+                },
+                error: (e) => console.error(e)
+            }
+        );
+    }
 
-  setActiveContact(contact: Contact, index: number): void {
-    this.currentContact = contact;
-    this.currentIndex = index;
-  }
+    setActiveContact(contact: Contact, index: number): void {
+        this.currentContact = contact;
+        this.currentIndex = index;
+    }
 
 }

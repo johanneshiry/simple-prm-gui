@@ -2,11 +2,10 @@
     <div *ngIf="currentContact">
         <h4>Contact</h4>
         <div>
-            <label><strong>Uid:</strong></label> {{ currentContact!.uid }}
+            <label><strong>Uid:</strong></label> {{ currentContact.uid}}
         </div>
         <div>
-            <label><strong>vCard:</strong></label>
-            {{ currentContact!.vCard }}
+            <label><strong>Name:</strong></label> {{ currentContact.vCard.FN[0].value}}
         </div>
     </div>
     <div *ngIf="!currentContact">
