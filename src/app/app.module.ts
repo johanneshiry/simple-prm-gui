@@ -7,6 +7,9 @@ import { AddStayInTouchComponent } from './components/add-stay-in-touch/add-stay
 import { ContactsListComponent } from './components/contacts-list/contacts-list.component';
 import { ContactDetailsComponent } from './components/contact-details/contact-details.component';
 
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -16,7 +19,9 @@ import { ContactDetailsComponent } from './components/contact-details/contact-de
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
