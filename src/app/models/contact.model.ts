@@ -12,6 +12,10 @@ export class Contact {
         return this._vCard.UID!.value
     }
 
+    get fn() {
+        return this.vCard.FN[0].value
+    }
+
     constructor(apiContact: ApiContact) {
         let maybeVCard = Contact.validate(apiContact.vCard)
         if (maybeVCard instanceof Error || maybeVCard.UID === undefined) {

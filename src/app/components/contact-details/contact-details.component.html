@@ -5,7 +5,7 @@
             <label><strong>Uid:</strong></label> {{ currentContact.uid}}
         </div>
         <div>
-            <label><strong>Name:</strong></label> {{ currentContact.vCard.FN[0].value}}
+            <label><strong>Name:</strong></label> {{ currentContact.fn}}
         </div>
     </div>
     <div *ngIf="!currentContact">
