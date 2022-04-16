@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {Contact} from "../../models/contact.model";
+import {StayInTouchService} from "../../services/stay-in-touch.service";
 
 @Component({
   selector: 'app-contact-details',
@@ -6,6 +8,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./contact-details.component.scss']
 })
 export class ContactDetailsComponent implements OnInit {
+  @Input() viewMode = false;
+  @Input() currentContact?: Contact;
 
   constructor() { }
 

@@ -1,1 +1,21 @@
-<p>contacts-list works!</p>
+<div class="list row">
+    <div class="col-md-6">
+        <h4>Contacts List</h4>
+        <ul class="list-group">
+            <li
+                    class="list-group-item"
+                    *ngFor="let contact of contacts; let i = index"
+                    [class.active]="i == currentIndex"
+                    (click)="setActiveContact(contact, i)"
+            >
+                {{ contact.uid }}
+            </li>
+        </ul>
+    </div>
+    <div class="col-md-6">
+        <app-contact-details
+                [viewMode]="true"
+                [currentContact]="currentContact"
+        ></app-contact-details>
+    </div>
+</div>

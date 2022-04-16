@@ -1,1 +1,16 @@
-<p>contact-details works!</p>
+<div *ngIf="viewMode">
+    <div *ngIf="currentContact">
+        <h4>Contact</h4>
+        <div>
+            <label><strong>Uid:</strong></label> {{ currentContact!.uid }}
+        </div>
+        <div>
+            <label><strong>vCard:</strong></label>
+            {{ currentContact!.vCard }}
+        </div>
+    </div>
+    <div *ngIf="!currentContact">
+        <br />
+        <p>Please click on a Contact...</p>
+    </div>
+</div>
