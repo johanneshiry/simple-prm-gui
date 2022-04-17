@@ -13,7 +13,7 @@ export class ContactsListComponent implements OnInit {
     currentContact?: Contact;
     currentIndex = -1;
     title = '';
-    readonly limit = 5;
+    readonly limit = 20;
     readonly defaultOffset = 0;
     currentOffset = 0;
 

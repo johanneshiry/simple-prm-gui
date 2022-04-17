@@ -6,6 +6,7 @@ export class Contact {
     get vCard(): VCard4 {
         return this._vCard;
     }
+
     private readonly _vCard: VCard4;
 
     get uid() {
@@ -14,6 +15,25 @@ export class Contact {
 
     get fn() {
         return this.vCard.FN[0].value
+    }
+
+    get photoSrc() {
+        let maybePhotoSrcString = this.toBase64SrcString()
+        if (maybePhotoSrcString !== undefined) {
+            return maybePhotoSrcString
+        } else {
+            return ""
+        }
+    }
+
+    private toBase64SrcString() {
+        if (this.vCard.PHOTO !== undefined
+            && this.vCard.PHOTO!.length > 0
+            && this.vCard.PHOTO[0].parameters !== undefined
+            && this.vCard.PHOTO[0].parameters.TYPE !== undefined) {
+            return `data:image/${this.vCard.PHOTO[0].parameters.TYPE[0]};base64,${this.vCard.PHOTO[0].value}`
+        } else
+            return undefined
     }
 
     constructor(apiContact: ApiContact) {

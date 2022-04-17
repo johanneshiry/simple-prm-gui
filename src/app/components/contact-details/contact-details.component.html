@@ -2,10 +2,13 @@
     <div *ngIf="currentContact">
         <h4>Contact</h4>
         <div>
-            <label><strong>Uid:</strong></label> {{ currentContact.uid}}
+            <label><strong>Uid:</strong></label> {{ currentContact.uid }}
         </div>
         <div>
-            <label><strong>Name:</strong></label> {{ currentContact.fn}}
+            <label><strong>Name:</strong></label> {{ currentContact.fn }}
+        </div>
+        <div>
+            <label><strong>Photo:</strong></label> <img [src]="currentContact.photoSrc" alt="contact_picture">
         </div>
     </div>
     <div *ngIf="!currentContact">
