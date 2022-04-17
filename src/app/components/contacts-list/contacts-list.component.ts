@@ -13,6 +13,9 @@ export class ContactsListComponent implements OnInit {
     currentContact?: Contact;
     currentIndex = -1;
     title = '';
+    readonly limit = 5;
+    readonly defaultOffset = 0;
+    currentOffset = 0;
 
     constructor(private contactService: ContactService) {
     }
@@ -21,19 +24,33 @@ export class ContactsListComponent implements OnInit {
         this.retrieveContacts();
     }
 
-    retrieveContacts(): void {
-        this.contactService.getAll().subscribe({
-                next: (apiContacts: ApiContact[]) => {
-                    this.contacts = apiContacts.map(apiContact => new Contact(apiContact))
-                },
-                error: (e) => console.error(e)
-            }
-        );
+    retrieveContacts(offset: number = this.defaultOffset): void {
+        if (offset >= 0) { // offset must be at least zero
+            this.contactService.get(this.limit, offset).subscribe({
+                    next: (apiContacts: ApiContact[]) => {
+                        if (apiContacts.length != 0) {
+                            // only execute if we have entries, otherwise keep the current array of contacts
+                            this.contacts = apiContacts.map(apiContact => new Contact(apiContact))
+                            this.currentOffset = offset
+                        }
+                    },
+                    error: (e) => console.error(e)
+                }
+            );
+        }
     }
 
     setActiveContact(contact: Contact, index: number): void {
         this.currentContact = contact;
         this.currentIndex = index;
+    }
+
+    fetchPrevious(): void {
+        this.retrieveContacts(this.currentOffset - this.limit)
+    }
+
+    fetchNext(): void {
+        this.retrieveContacts(this.currentOffset + this.limit)
     }
 
 }
