@@ -26,6 +26,11 @@ const routes: Routes = [
           import('./views/dashboard/dashboard.module').then((m) => m.DashboardModule)
       },
       {
+        path: 'contacts',
+        loadChildren: () =>
+            import('./views/contacts/contacts.module').then((m) => m.ContactsModule)
+      },
+      {
         path: 'theme',
         loadChildren: () =>
           import('./views/theme/theme.module').then((m) => m.ThemeModule)

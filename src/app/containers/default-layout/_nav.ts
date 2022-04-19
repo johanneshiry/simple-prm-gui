@@ -11,6 +11,11 @@ export const navItems: INavData[] = [
     }
   },
   {
+    name: 'Contacts',
+    url: '/contacts',
+    iconComponent: { name: 'cil-drop' }
+  },
+  {
     title: true,
     name: 'Theme'
   },
