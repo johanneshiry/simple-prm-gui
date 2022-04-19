@@ -1,6 +1,6 @@
 import {parseVCards} from 'vcard4-ts';
 import {VCard4} from "vcard4-ts/src/vcard4Types";
-import {ApiContact} from "./api-contact.model";
+import {ApiContact} from "./api/api-contact.model";
 
 export class Contact {
     constructor(apiContact: ApiContact) {
