@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { ContactsRoutingModule } from './contacts-routing.module';
 import { ContactsComponent } from './contacts.component';
+import {ButtonModule, ListGroupModule, ModalModule, PaginationModule} from "@coreui/angular";
 
 
 @NgModule({
@@ -11,7 +12,11 @@ import { ContactsComponent } from './contacts.component';
   ],
   imports: [
     CommonModule,
-    ContactsRoutingModule
+    ContactsRoutingModule,
+    PaginationModule,
+    ListGroupModule,
+    ModalModule,
+    ButtonModule
   ]
 })
 export class ContactsModule { }

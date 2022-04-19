@@ -18,6 +18,10 @@ export class ContactsComponent implements OnInit {
   readonly defaultOffset = 0;
   currentOffset = 0;
 
+  // details modal view
+  detailsVisible = false;
+
+
   constructor(private contactService: ContactService) {
   }
 
@@ -44,6 +48,9 @@ export class ContactsComponent implements OnInit {
   setActiveContact(contact: Contact, index: number): void {
     this.currentContact = contact;
     this.currentIndex = index;
+
+    // toogle details on select
+    this.toggleContactDetails()
   }
 
   fetchPrevious(): void {
@@ -53,4 +60,13 @@ export class ContactsComponent implements OnInit {
   fetchNext(): void {
     this.retrieveContacts(this.currentOffset + this.limit)
   }
+
+  toggleContactDetails() {
+    this.detailsVisible = !this.detailsVisible;
+  }
+
+  handleDetailsVisibleChange(event: any) {
+    this.detailsVisible = event;
+  }
+
 }

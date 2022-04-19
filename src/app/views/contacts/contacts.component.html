@@ -1,25 +1,59 @@
-<div class="list row">
-    <div class="col-md-6">
-        <h4>Contacts List</h4>
-        <ul class="list-group">
-            <li
-                    class="list-group-item"
-                    *ngFor="let contact of contacts; let i = index"
-                    [class.active]="i == currentIndex"
-                    (click)="setActiveContact(contact, i)"
-            >
-                {{ contact.fn }}
-            </li>
-        </ul>
-    </div>
+<!--<div class="list row">-->
+<h4>Contacts List</h4>
+<div cListGroup flush>
+    <button cListGroupItem
+            *ngFor="let contact of contacts; let i = index"
+            (click)="setActiveContact(contact, i)"
+    > {{ contact.fn }}</button>
+</div>
 <!--    <div class="col-md-6">-->
 <!--        <app-contact-details-->
 <!--                [viewMode]="true"-->
 <!--                [currentContact]="currentContact"-->
 <!--        ></app-contact-details>-->
 <!--    </div>-->
-    <div class="page-buttons">
-        <button type="button" class="btn prev btn-primary" (click)="fetchPrevious()">Prev</button>
-        <button type="button" class="btn prev btn-primary" (click)="fetchNext()">Next</button>
-    </div>
+<c-pagination aria-label="Page navigation example">
+    <c-page-item>
+        <a cPageLink routerLink="./" (click)="fetchPrevious()">Previous</a>
+    </c-page-item>
+    <!--        <c-page-item>-->
+    <!--            <a cPageLink routerLink="./">1</a>-->
+    <!--        </c-page-item>-->
+    <!--        <c-page-item>-->
+    <!--            <a cPageLink routerLink="./">2</a>-->
+    <!--        </c-page-item>-->
+    <!--        <c-page-item>-->
+    <!--            <a cPageLink routerLink="./">3</a>-->
+    <!--        </c-page-item>-->
+    <c-page-item>
+        <a cPageLink routerLink="./" (click)="fetchNext()">Next</a>
+    </c-page-item>
+</c-pagination>
+
+<!-- Contact details modal view -->
+<div *ngIf="currentContact">
+    <c-modal id="contactDetails" [visible]="detailsVisible" (visibleChange)="handleDetailsVisibleChange($event)">
+<!--        <div style="margin-top:-10px; margin-left: auto; margin-right: auto; width: 100px;" ><img class="avatar-img" [src]="currentContact.photoSrc" alt="contact_picture"></div>-->
+        <c-modal-header>
+            <h5 cModalTitle>{{ currentContact.fn }}</h5>
+            <button (click)="toggleContactDetails()" cButtonClose></button>
+        </c-modal-header>
+        <c-modal-body>
+            <div>
+                <label><strong>Uid:</strong></label> {{ currentContact.uid }}
+            </div>
+            <div>
+                <label><strong>Name:</strong></label> {{ currentContact.fn }}
+            </div>
+            <div>
+                <label><strong>Photo:</strong></label> <img class="avatar-img" [src]="currentContact.photoSrc" alt="contact_picture">
+            </div>
+        </c-modal-body>
+        <c-modal-footer>
+            <button (click)="toggleContactDetails()" cButton color="secondary">
+                Close
+            </button>
+            <button cButton color="primary">Details</button>
+        </c-modal-footer>
+    </c-modal>
 </div>
