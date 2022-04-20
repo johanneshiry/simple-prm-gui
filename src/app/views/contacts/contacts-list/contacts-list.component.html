@@ -4,7 +4,7 @@
     <button cListGroupItem
             *ngFor="let contact of contacts; let i = index"
             (click)="setActiveContact(contact, i)"
-    > {{ contact.fn }}</button>
+    >{{ contact.fn }}</button>
 </div>
 <!--    <div class="col-md-6">-->
 <!--        <app-contact-details-->
@@ -31,29 +31,29 @@
 </c-pagination>
 
 <!-- Contact details modal view -->
-<div *ngIf="currentContact">
-    <c-modal id="contactDetails" [visible]="detailsVisible" (visibleChange)="handleDetailsVisibleChange($event)">
-<!--        <div style="margin-top:-10px; margin-left: auto; margin-right: auto; width: 100px;" ><img class="avatar-img" [src]="currentContact.photoSrc" alt="contact_picture"></div>-->
-        <c-modal-header>
-            <h5 cModalTitle>{{ currentContact.fn }}</h5>
-            <button (click)="toggleContactDetails()" cButtonClose></button>
-        </c-modal-header>
-        <c-modal-body>
-            <div>
-                <label><strong>Uid:</strong></label> {{ currentContact.uid }}
-            </div>
-            <div>
-                <label><strong>Name:</strong></label> {{ currentContact.fn }}
-            </div>
-            <div>
-                <label><strong>Photo:</strong></label> <img class="avatar-img" [src]="currentContact.photoSrc" alt="contact_picture">
-            </div>
-        </c-modal-body>
-        <c-modal-footer>
-            <button (click)="toggleContactDetails()" cButton color="secondary">
-                Close
-            </button>
-            <button cButton color="primary">Details</button>
-        </c-modal-footer>
-    </c-modal>
-</div>
+<!--<div *ngIf="currentContact">-->
+<!--    <c-modal id="contactDetails" [visible]="detailsVisible" (visibleChange)="handleDetailsVisibleChange($event)">-->
+<!--&lt;!&ndash;        <div style="margin-top:-10px; margin-left: auto; margin-right: auto; width: 100px;" ><img class="avatar-img" [src]="currentContact.photoSrc" alt="contact_picture"></div>&ndash;&gt;-->
+<!--        <c-modal-header>-->
+<!--            <h5 cModalTitle>{{ currentContact.fn }}</h5>-->
+<!--            <button (click)="toggleContactDetails()" cButtonClose></button>-->
+<!--        </c-modal-header>-->
+<!--        <c-modal-body>-->
+<!--            <div>-->
+<!--                <label><strong>Uid:</strong></label> {{ currentContact.uid }}-->
+<!--            </div>-->
+<!--            <div>-->
+<!--                <label><strong>Name:</strong></label> {{ currentContact.fn }}-->
+<!--            </div>-->
+<!--            <div>-->
+<!--                <label><strong>Photo:</strong></label> <img class="avatar-img" [src]="currentContact.photoSrc" alt="contact_picture">-->
+<!--            </div>-->
+<!--        </c-modal-body>-->
+<!--        <c-modal-footer>-->
+<!--            <button (click)="toggleContactDetails()" cButton color="secondary">-->
+<!--                Close-->
+<!--            </button>-->
+<!--            <button cButton color="primary">Details</button>-->
+<!--        </c-modal-footer>-->
+<!--    </c-modal>-->
+<!--</div>-->

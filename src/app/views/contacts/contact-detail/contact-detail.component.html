@@ -1,1 +1,24 @@
-<p>contact-detail works!</p>
+<div *ngIf="!contact">
+    Please select a contact to display its details!
+</div>
+<div *ngIf="contact">
+    <c-col xs="12">
+        <c-card class="mb-4" id="AngularButton">
+            <c-card-header>
+                <strong>{{ contact.fn }}</strong>
+            </c-card-header>
+            <c-card-body>
+                <div>
+                    <label><strong>Uid:</strong></label> {{ contact.uid }}
+                </div>
+                <div>
+                    <label><strong>Name:</strong></label> {{ contact.fn }}
+                </div>
+                <c-avatar
+                        size="lg"
+                        src="{{ contact.photoSrc }}"
+                ></c-avatar>
+            </c-card-body>
+        </c-card>
+    </c-col>
+</div>

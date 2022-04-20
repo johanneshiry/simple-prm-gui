@@ -3,7 +3,15 @@ import { CommonModule } from '@angular/common';
 
 import { ContactsRoutingModule } from './contacts-routing.module';
 import { ContactsListComponent } from './contacts-list/contacts-list.component';
-import {ButtonModule, ListGroupModule, ModalModule, PaginationModule} from "@coreui/angular";
+import {
+  AvatarModule,
+  ButtonModule,
+  CardModule,
+  GridModule,
+  ListGroupModule,
+  ModalModule,
+  PaginationModule
+} from "@coreui/angular";
 import { ContactDetailComponent } from './contact-detail/contact-detail.component';
 
 
@@ -18,7 +26,10 @@ import { ContactDetailComponent } from './contact-detail/contact-detail.componen
     PaginationModule,
     ListGroupModule,
     ModalModule,
-    ButtonModule
+    ButtonModule,
+    GridModule,
+    CardModule,
+    AvatarModule
   ]
 })
 export class ContactsModule { }
