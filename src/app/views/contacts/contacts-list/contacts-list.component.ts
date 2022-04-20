@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import {Contact} from "../../models/contact.model";
-import {ContactService} from "../../services/contact.service";
-import {ApiContact} from "../../models/api/api-contact.model";
+import {Contact} from "../../../models/contact.model";
+import {ContactService} from "../../../services/contact.service";
+import {ApiContact} from "../../../models/api/api-contact.model";
 
 @Component({
   selector: 'app-contacts',
-  templateUrl: './contacts.component.html',
-  styleUrls: ['./contacts.component.scss']
+  templateUrl: './contacts-list.component.html',
+  styleUrls: ['./contacts-list.component.scss']
 })
-export class ContactsComponent implements OnInit {
+export class ContactsListComponent implements OnInit {
 
   contacts?: Contact[];
   currentContact?: Contact;
