@@ -140,11 +140,11 @@ export class WidgetsEComponent implements AfterContentInit {
   getDayName(shift = 0) {
     const locale =
       navigator.language ??
-        // @ts-ignore
+      // @ts-ignore
       navigator.userLanguage ??
-        // @ts-ignore
+      // @ts-ignore
       navigator.systemLanguage ??
-        // @ts-ignore
+      // @ts-ignore
       navigator.browserLanguage ??
       "en-US";
     const baseDate = new Date(Date.UTC(2000, 1, 0)); // Monday
