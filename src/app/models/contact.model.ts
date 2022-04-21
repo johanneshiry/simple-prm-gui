@@ -81,12 +81,5 @@ export class Contact extends ContactDetailHelper {
         location: adr.value.locality?.[0],
       };
     });
-
-    //     (adr) => {
-    //   let v = adr.value;
-    //   let adr ={
-    //     street: v.streetAddress;
-    //   }
-    // });
   }
 }

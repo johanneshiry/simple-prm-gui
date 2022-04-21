@@ -13,7 +13,7 @@
             <c-avatar
               size="xxxl"
               class="contact_avatar"
-              [color]="_avatarBackgroundColor"
+              [color]="avatarBackgroundColor"
               >{{ contact.initials }}</c-avatar
             >
           </ng-template>
@@ -66,12 +66,27 @@
                 <strong>Reminders</strong>
               </c-card-header>
               <c-card-body>
-                <div>
-                  <label><strong>Uid:</strong></label> {{ contact.uid }}
+                <div *ngIf="reminders; else noReminder">
+                  <div cListGroupItem *ngFor="let reminder of reminders">
+                    <c-row>
+                      <c-col xs="4">{{ reminder.contactId }}</c-col>
+                      <c-col xs="4">{{ reminder.contactInterval }}</c-col>
+                      <c-col xs="4">{{ reminder.lastContacted }}</c-col>
+                    </c-row>
+                  </div>
                 </div>
-                <div>
-                  <label><strong>Name:</strong></label> {{ contact.fn }}
-                </div>
+                <ng-template #noReminder>
+                  <div cListGroupItem>
+                    <p>No reminders set!</p>
+                  </div>
+                </ng-template>
+                <c-row class="pt-2 justify-content-end">
+                  <c-col xs="3" class="border">
+                    <button type="button" class="btn prev btn-primary">
+                      Create Reminder
+                    </button>
+                  </c-col>
+                </c-row>
               </c-card-body>
             </c-card>
           </c-col>

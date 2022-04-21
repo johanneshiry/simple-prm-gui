@@ -1,6 +1,6 @@
 import { Duration, ZonedDateTime } from "@js-joda/core";
 
-export interface ApiStayInTouch {
+export interface ApiReminder {
   contactId: string;
   lastContacted: ZonedDateTime;
   contactInterval: Duration;
