@@ -1,9 +1,11 @@
 import { parseVCards } from "vcard4-ts";
 import { VCard4 } from "vcard4-ts/src/vcard4Types";
 import { ApiContact } from "./api/api-contact.model";
+import { ContactDetailHelper } from "../views/contacts/contact-detail/contact-detail-helper";
 
-export class Contact {
+export class Contact extends ContactDetailHelper {
   constructor(apiContact: ApiContact) {
+    super();
     let maybeVCard = Contact.validate(apiContact.vCard);
     if (maybeVCard instanceof Error || maybeVCard.UID === undefined) {
       console.error(
@@ -24,6 +26,19 @@ export class Contact {
     }
   }
 
+  private static validate(vCard: string): VCard4 | Error {
+    const vCards = parseVCards(vCard).vCards;
+    if (vCards) {
+      if (vCards.length > 1 || vCards.length == 0) {
+        return Error("Multiple vCards per contact are not supported!");
+      } else {
+        return vCards[0];
+      }
+    } else {
+      return Error("Cannot parse vCard string with content '" + vCard + "'!");
+    }
+  }
+
   get vCard(): VCard4 {
     return this._vCard;
   }
@@ -38,36 +53,40 @@ export class Contact {
     return this.vCard.FN[0].value;
   }
 
+  get initials() {
+    return this.getInitials(this._vCard);
+  }
+
   get photoSrc() {
-    let maybePhotoSrcString = this.toBase64SrcString();
-    if (maybePhotoSrcString !== undefined) {
-      return maybePhotoSrcString;
-    } else {
-      return "";
-    }
+    return this.photoSrcString(this._vCard);
   }
 
-  private toBase64SrcString() {
-    if (
-      this.vCard.PHOTO !== undefined &&
-      this.vCard.PHOTO!.length > 0 &&
-      this.vCard.PHOTO[0].parameters !== undefined &&
-      this.vCard.PHOTO[0].parameters.TYPE !== undefined
-    ) {
-      return `data:image/${this.vCard.PHOTO[0].parameters.TYPE[0]};base64,${this.vCard.PHOTO[0].value}`;
-    } else return undefined;
+  get photoBackgroundUrl() {
+    let photoSrc = this.photoSrc;
+    if (photoSrc != undefined) {
+      return `url(${this.photoSrc})`;
+    } else return photoSrc;
   }
 
-  private static validate(vCard: string): VCard4 | Error {
-    const vCards = parseVCards(vCard).vCards;
-    if (vCards) {
-      if (vCards.length > 1 || vCards.length == 0) {
-        return Error("Multiple vCards per contact are not supported!");
-      } else {
-        return vCards[0];
-      }
-    } else {
-      return Error("Cannot parse vCard string with content '" + vCard + "'!");
-    }
+  get age() {
+    return this.calculateAge(this._vCard);
+  }
+
+  get addresses() {
+    return this._vCard.ADR?.map((adr) => {
+      return {
+        type: this.wordToLowerCaseExceptFirstChar(adr.parameters?.TYPE?.[0]),
+        street: adr.value.streetAddress?.[0],
+        postalCode: adr.value.postalCode?.[0],
+        location: adr.value.locality?.[0],
+      };
+    });
+
+    //     (adr) => {
+    //   let v = adr.value;
+    //   let adr ={
+    //     street: v.streetAddress;
+    //   }
+    // });
   }
 }

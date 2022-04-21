@@ -1,19 +1,85 @@
-<div *ngIf="!contact">Please select a contact to display its details!</div>
-<div *ngIf="contact">
-  <c-col xs="12">
-    <c-card class="mb-4" id="AngularButton">
-      <c-card-header>
-        <strong>{{ contact.fn }}</strong>
-      </c-card-header>
-      <c-card-body>
-        <div>
-          <label><strong>Uid:</strong></label> {{ contact.uid }}
+<c-container>
+  <div *ngIf="contact; else noContactSelected">
+    <c-row class="align-items-start">
+      <c-col xs="5" xxl="2">
+        <div class="p-3">
+          <c-avatar
+            *ngIf="contact.photoBackgroundUrl; else noAvatar"
+            size="xxxl"
+            class="contact-avatar"
+            style="background-image: {{ contact.photoBackgroundUrl }};"
+          ></c-avatar>
+          <ng-template #noAvatar>
+            <c-avatar
+              size="xxxl"
+              class="contact_avatar"
+              [color]="_avatarBackgroundColor"
+              >{{ contact.initials }}</c-avatar
+            >
+          </ng-template>
         </div>
-        <div>
-          <label><strong>Name:</strong></label> {{ contact.fn }}
-        </div>
-        <c-avatar size="lg" src="{{ contact.photoSrc }}"></c-avatar>
-      </c-card-body>
-    </c-card>
-  </c-col>
-</div>
+      </c-col>
+      <c-col xs="7" xxl="10">
+        <c-row class="align-items-start">
+          <c-col class="p-1">
+            <div>
+              <h1 class="display-5">{{ contact.fn }}</h1>
+            </div>
+          </c-col>
+        </c-row>
+        <c-row *ngIf="contact.age">
+          <c-col class="p-1">
+            <label>Age: {{ contact.age }}</label>
+          </c-col>
+        </c-row>
+      </c-col>
+    </c-row>
+    <c-row>
+      <c-col xs="4">
+        <c-row>
+          <c-col>
+            <c-card class="mb-4">
+              <c-card-header>
+                <strong>Addresses</strong>
+              </c-card-header>
+              <c-card-body>
+                <div *ngIf="contact.addresses; else noAdr">
+                  <div cListGroupItem *ngFor="let address of contact.addresses">
+                    {{ address.type }}<br />
+                    {{ address.street }}<br />
+                    {{ address.postalCode }} {{ address.location }}
+                  </div>
+                </div>
+                <ng-template #noAdr>
+                  <p>No addresses available!</p>
+                </ng-template>
+              </c-card-body>
+            </c-card>
+          </c-col>
+        </c-row>
+      </c-col>
+      <c-col xs="8">
+        <c-row>
+          <c-col>
+            <c-card class="mb-4">
+              <c-card-header>
+                <strong>Reminders</strong>
+              </c-card-header>
+              <c-card-body>
+                <div>
+                  <label><strong>Uid:</strong></label> {{ contact.uid }}
+                </div>
+                <div>
+                  <label><strong>Name:</strong></label> {{ contact.fn }}
+                </div>
+              </c-card-body>
+            </c-card>
+          </c-col>
+        </c-row>
+      </c-col>
+    </c-row>
+  </div>
+  <ng-template #noContactSelected>
+    <div>Please select a contact to display its details!</div>
+  </ng-template>
+</c-container>
