@@ -1,24 +1,36 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { RouterTestingModule } from "@angular/router/testing";
 
-import { CardModule, GridModule, TableModule, UtilitiesModule } from '@coreui/angular';
-import { IconSetService } from '@coreui/icons-angular';
-import { iconSubset } from '../../../common/icon-subset';
-import { TablesComponent } from './tables.component';
-import { DocsComponentsModule } from '../../../../components';
+import {
+  CardModule,
+  GridModule,
+  TableModule,
+  UtilitiesModule,
+} from "@coreui/angular";
+import { IconSetService } from "@coreui/icons-angular";
+import { iconSubset } from "../../../common/icon-subset";
+import { TablesComponent } from "./tables.component";
+import { DocsComponentsModule } from "../../../../components";
 
-describe('TablesComponent', () => {
+describe("TablesComponent", () => {
   let component: TablesComponent;
   let fixture: ComponentFixture<TablesComponent>;
   let iconSetService: IconSetService;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TablesComponent ],
-      imports: [GridModule, CardModule, TableModule, GridModule, UtilitiesModule, DocsComponentsModule, RouterTestingModule],
-      providers: [IconSetService]
-    })
-    .compileComponents();
+      declarations: [TablesComponent],
+      imports: [
+        GridModule,
+        CardModule,
+        TableModule,
+        GridModule,
+        UtilitiesModule,
+        DocsComponentsModule,
+        RouterTestingModule,
+      ],
+      providers: [IconSetService],
+    }).compileComponents();
   });
 
   beforeEach(() => {
@@ -30,7 +42,7 @@ describe('TablesComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

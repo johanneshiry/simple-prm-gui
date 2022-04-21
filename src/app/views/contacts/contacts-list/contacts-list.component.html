@@ -1,10 +1,13 @@
 <!--<div class="list row">-->
 <h4>Contacts List</h4>
 <div cListGroup flush>
-    <button cListGroupItem
-            *ngFor="let contact of contacts; let i = index"
-            (click)="setActiveContact(contact, i)"
-    >{{ contact.fn }}</button>
+  <button
+    cListGroupItem
+    *ngFor="let contact of contacts; let i = index"
+    (click)="setActiveContact(contact, i)"
+  >
+    {{ contact.fn }}
+  </button>
 </div>
 <!--    <div class="col-md-6">-->
 <!--        <app-contact-details-->
@@ -13,21 +16,21 @@
 <!--        ></app-contact-details>-->
 <!--    </div>-->
 <c-pagination aria-label="Page navigation example">
-    <c-page-item>
-        <a cPageLink routerLink="./" (click)="fetchPrevious()">Previous</a>
-    </c-page-item>
-    <!--        <c-page-item>-->
-    <!--            <a cPageLink routerLink="./">1</a>-->
-    <!--        </c-page-item>-->
-    <!--        <c-page-item>-->
-    <!--            <a cPageLink routerLink="./">2</a>-->
-    <!--        </c-page-item>-->
-    <!--        <c-page-item>-->
-    <!--            <a cPageLink routerLink="./">3</a>-->
-    <!--        </c-page-item>-->
-    <c-page-item>
-        <a cPageLink routerLink="./" (click)="fetchNext()">Next</a>
-    </c-page-item>
+  <c-page-item>
+    <a cPageLink routerLink="./" (click)="fetchPrevious()">Previous</a>
+  </c-page-item>
+  <!--        <c-page-item>-->
+  <!--            <a cPageLink routerLink="./">1</a>-->
+  <!--        </c-page-item>-->
+  <!--        <c-page-item>-->
+  <!--            <a cPageLink routerLink="./">2</a>-->
+  <!--        </c-page-item>-->
+  <!--        <c-page-item>-->
+  <!--            <a cPageLink routerLink="./">3</a>-->
+  <!--        </c-page-item>-->
+  <c-page-item>
+    <a cPageLink routerLink="./" (click)="fetchNext()">Next</a>
+  </c-page-item>
 </c-pagination>
 
 <!-- Contact details modal view -->

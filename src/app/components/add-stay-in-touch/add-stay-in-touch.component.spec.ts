@@ -1,16 +1,15 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { AddStayInTouchComponent } from './add-stay-in-touch.component';
+import { AddStayInTouchComponent } from "./add-stay-in-touch.component";
 
-describe('AddStayInTouchComponent', () => {
+describe("AddStayInTouchComponent", () => {
   let component: AddStayInTouchComponent;
   let fixture: ComponentFixture<AddStayInTouchComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AddStayInTouchComponent ]
-    })
-    .compileComponents();
+      declarations: [AddStayInTouchComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {
@@ -19,7 +18,7 @@ describe('AddStayInTouchComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

@@ -1,89 +1,88 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { NgModule } from "@angular/core";
+import { RouterModule, Routes } from "@angular/router";
 
-import { FloatingLabelsComponent } from './floating-labels/floating-labels.component';
-import { FormControlsComponent } from './form-controls/form-controls.component';
-import { InputGroupsComponent } from './input-groups/input-groups.component';
-import { RangesComponent } from './ranges/ranges.component';
-import { SelectComponent } from './select/select.component';
-import { ChecksRadiosComponent } from './checks-radios/checks-radios.component';
-import { LayoutComponent } from './layout/layout.component';
-import { ValidationComponent } from './validation/validation.component';
+import { FloatingLabelsComponent } from "./floating-labels/floating-labels.component";
+import { FormControlsComponent } from "./form-controls/form-controls.component";
+import { InputGroupsComponent } from "./input-groups/input-groups.component";
+import { RangesComponent } from "./ranges/ranges.component";
+import { SelectComponent } from "./select/select.component";
+import { ChecksRadiosComponent } from "./checks-radios/checks-radios.component";
+import { LayoutComponent } from "./layout/layout.component";
+import { ValidationComponent } from "./validation/validation.component";
 
 const routes: Routes = [
   {
-    path: '',
+    path: "",
     data: {
-      title: 'Forms'
+      title: "Forms",
     },
     children: [
       {
-        path: '',
-        redirectTo: 'form-control'
+        path: "",
+        redirectTo: "form-control",
       },
       {
-        path: 'form-control',
+        path: "form-control",
         component: FormControlsComponent,
         data: {
-          title: 'Form Control'
-        }
+          title: "Form Control",
+        },
       },
       {
-        path: 'select',
+        path: "select",
         component: SelectComponent,
         data: {
-          title: 'Select'
-        }
+          title: "Select",
+        },
       },
       {
-        path: 'checks-radios',
+        path: "checks-radios",
         component: ChecksRadiosComponent,
         data: {
-          title: 'Checks & Radios'
-        }
+          title: "Checks & Radios",
+        },
       },
       {
-        path: 'range',
+        path: "range",
         component: RangesComponent,
         data: {
-          title: 'Range'
-        }
+          title: "Range",
+        },
       },
       {
-        path: 'input-group',
+        path: "input-group",
         component: InputGroupsComponent,
         data: {
-          title: 'Input Group'
-        }
+          title: "Input Group",
+        },
       },
       {
-        path: 'floating-labels',
+        path: "floating-labels",
         component: FloatingLabelsComponent,
         data: {
-          title: 'Floating Labels'
-        }
+          title: "Floating Labels",
+        },
       },
       {
-        path: 'layout',
+        path: "layout",
         component: LayoutComponent,
         data: {
-          title: 'Layout'
-        }
+          title: "Layout",
+        },
       },
       {
-        path: 'validation',
+        path: "validation",
         component: ValidationComponent,
         data: {
-          title: 'Validation'
-        }
-      }
-    ]
-  }
+          title: "Validation",
+        },
+      },
+    ],
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class FormsRoutingModule {
-}
+export class FormsRoutingModule {}

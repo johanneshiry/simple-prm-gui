@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
 
 import {
   ButtonModule,
@@ -8,18 +8,21 @@ import {
   GridModule,
   ProgressModule,
   SharedModule,
-  WidgetModule
-} from '@coreui/angular';
-import { IconModule } from '@coreui/icons-angular';
-import { ChartjsModule } from '@coreui/angular-chartjs';
+  WidgetModule,
+} from "@coreui/angular";
+import { IconModule } from "@coreui/icons-angular";
+import { ChartjsModule } from "@coreui/angular-chartjs";
 
-import { DocsComponentsModule } from '@docs-components/docs-components.module';
+import { DocsComponentsModule } from "@docs-components/docs-components.module";
 
-import { WidgetsRoutingModule } from './widgets-routing.module';
-import { WidgetsComponent } from './widgets/widgets.component';
-import { WidgetsBrandComponent } from './widgets-brand/widgets-brand.component';
-import { ChartSample, WidgetsDropdownComponent } from './widgets-dropdown/widgets-dropdown.component';
-import { WidgetsEComponent } from './widgets-e/widgets-e.component';
+import { WidgetsRoutingModule } from "./widgets-routing.module";
+import { WidgetsComponent } from "./widgets/widgets.component";
+import { WidgetsBrandComponent } from "./widgets-brand/widgets-brand.component";
+import {
+  ChartSample,
+  WidgetsDropdownComponent,
+} from "./widgets-dropdown/widgets-dropdown.component";
+import { WidgetsEComponent } from "./widgets-e/widgets-e.component";
 
 @NgModule({
   declarations: [
@@ -27,7 +30,7 @@ import { WidgetsEComponent } from './widgets-e/widgets-e.component';
     WidgetsBrandComponent,
     WidgetsDropdownComponent,
     ChartSample,
-    WidgetsEComponent
+    WidgetsEComponent,
   ],
   imports: [
     CommonModule,
@@ -41,12 +44,8 @@ import { WidgetsEComponent } from './widgets-e/widgets-e.component';
     CardModule,
     DocsComponentsModule,
     ProgressModule,
-    ChartjsModule
+    ChartjsModule,
   ],
-  exports: [
-    WidgetsBrandComponent,
-    WidgetsDropdownComponent
-  ]
+  exports: [WidgetsBrandComponent, WidgetsDropdownComponent],
 })
-export class WidgetsModule {
-}
+export class WidgetsModule {}

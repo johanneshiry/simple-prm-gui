@@ -1,47 +1,46 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { NgModule } from "@angular/core";
+import { RouterModule, Routes } from "@angular/router";
 
-import { CoreUIIconsComponent } from './coreui-icons.component';
+import { CoreUIIconsComponent } from "./coreui-icons.component";
 
 const routes: Routes = [
   {
-    path: '',
+    path: "",
     data: {
-      title: 'Icons'
+      title: "Icons",
     },
     children: [
       {
-        path: '',
-        redirectTo: 'coreui-icons'
+        path: "",
+        redirectTo: "coreui-icons",
       },
       {
-        path: 'coreui-icons',
+        path: "coreui-icons",
         component: CoreUIIconsComponent,
         data: {
-          title: 'CoreUI Icons'
-        }
+          title: "CoreUI Icons",
+        },
       },
       {
-        path: 'brands',
+        path: "brands",
         component: CoreUIIconsComponent,
         data: {
-          title: 'Brands'
-        }
+          title: "Brands",
+        },
       },
       {
-        path: 'flags',
+        path: "flags",
         component: CoreUIIconsComponent,
         data: {
-          title: 'Flags'
-        }
-      }
-    ]
-  }
+          title: "Flags",
+        },
+      },
+    ],
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class IconsRoutingModule {
-}
+export class IconsRoutingModule {}

@@ -1,17 +1,17 @@
-import { Component, OnInit } from '@angular/core';
-import { Router, NavigationEnd } from '@angular/router';
+import { Component, OnInit } from "@angular/core";
+import { Router, NavigationEnd } from "@angular/router";
 
-import { IconSetService } from '@coreui/icons-angular';
-import { iconSubset } from './common/icon-subset';
-import { Title } from '@angular/platform-browser';
+import { IconSetService } from "@coreui/icons-angular";
+import { iconSubset } from "./common/icon-subset";
+import { Title } from "@angular/platform-browser";
 
 @Component({
   // tslint:disable-next-line:component-selector
-  selector: 'body',
-  template: '<router-outlet></router-outlet>',
+  selector: "body",
+  template: "<router-outlet></router-outlet>",
 })
 export class AppComponent implements OnInit {
-  title = 'CoreUI Free Angular Admin Template';
+  title = "CoreUI Free Angular Admin Template";
 
   constructor(
     private router: Router,

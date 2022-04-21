@@ -1,13 +1,13 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
+import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { ReactiveFormsModule } from "@angular/forms";
 
-import { DocsComponentsModule } from '@docs-components/docs-components.module';
-import { ButtonsComponent } from './buttons/buttons.component';
-import { ButtonGroupsComponent } from './button-groups/button-groups.component';
-import { DropdownsComponent } from './dropdowns/dropdowns.component';
+import { DocsComponentsModule } from "@docs-components/docs-components.module";
+import { ButtonsComponent } from "./buttons/buttons.component";
+import { ButtonGroupsComponent } from "./button-groups/button-groups.component";
+import { DropdownsComponent } from "./dropdowns/dropdowns.component";
 
-import { ButtonsRoutingModule } from './buttons-routing.module';
+import { ButtonsRoutingModule } from "./buttons-routing.module";
 
 import {
   ButtonGroupModule,
@@ -20,17 +20,13 @@ import {
   NavbarModule,
   NavModule,
   SharedModule,
-  UtilitiesModule
-} from '@coreui/angular';
+  UtilitiesModule,
+} from "@coreui/angular";
 
-import { IconModule } from '@coreui/icons-angular';
+import { IconModule } from "@coreui/icons-angular";
 
 @NgModule({
-  declarations: [
-    ButtonsComponent,
-    ButtonGroupsComponent,
-    DropdownsComponent,
-  ],
+  declarations: [ButtonsComponent, ButtonGroupsComponent, DropdownsComponent],
   imports: [
     CommonModule,
     ButtonsRoutingModule,
@@ -48,8 +44,7 @@ import { IconModule } from '@coreui/icons-angular';
     NavbarModule,
     CollapseModule,
     NavModule,
-    NavbarModule
-  ]
+    NavbarModule,
+  ],
 })
-export class ButtonsModule {
-}
+export class ButtonsModule {}

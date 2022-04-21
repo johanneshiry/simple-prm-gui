@@ -1,7 +1,14 @@
 <div class="example mb-3">
   <c-nav variant="tabs">
     <c-nav-item>
-      <a [active]="true" [cTabContent]="tabContent" [fragment]="fragment" routerLink="./" [tabPaneIdx]="0" cNavLink>
+      <a
+        [active]="true"
+        [cTabContent]="tabContent"
+        [fragment]="fragment"
+        routerLink="./"
+        [tabPaneIdx]="0"
+        cNavLink
+      >
         <svg cIcon class="me-2" name="cilMediaPlay"></svg>
         Preview
       </a>
@@ -14,7 +21,11 @@
     </c-nav-item>
   </c-nav>
   <c-tab-content #tabContent="cTabContent" cRounded="bottom">
-    <c-tab-pane aria-labelledby="docs-code-preview" class="p-3 preview" role="tabpanel">
+    <c-tab-pane
+      aria-labelledby="docs-code-preview"
+      class="p-3 preview"
+      role="tabpanel"
+    >
       <ng-content></ng-content>
     </c-tab-pane>
   </c-tab-content>

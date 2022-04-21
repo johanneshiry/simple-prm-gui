@@ -15,7 +15,7 @@
           components. Cards have no top, left, and right margins by default, so
           use
           <a href="https://coreui.io/docs/utilities/spacing"
-          >spacing utilities</a
+            >spacing utilities</a
           >
           as needed. They have no fixed width to start, so they&#39;ll fill the
           full width of its parent.
@@ -26,12 +26,15 @@
           fill the full width of its parent element.
         </p>
         <app-docs-example href="components/card">
-          <c-card style="width: 18rem;">
-            <ng-container *ngTemplateOutlet="imgPlaceholderTemplate"></ng-container>
+          <c-card style="width: 18rem">
+            <ng-container
+              *ngTemplateOutlet="imgPlaceholderTemplate"
+            ></ng-container>
             <c-card-body>
               <h5 cCardTitle>Card title</h5>
               <p cCardText>
-                Some quick example text to build on the card title and make up the bulk of the card's content.
+                Some quick example text to build on the card title and make up
+                the bulk of the card's content.
               </p>
               <button cButton color="primary">Go somewhere</button>
             </c-card-body>
@@ -51,7 +54,7 @@
           it whenever you need a padded section within a card.
         </p>
         <app-docs-example href="components/card/#body">
-          <c-card style="width: 18rem;">
+          <c-card style="width: 18rem">
             <c-card-body>This is some text within a card body.</c-card-body>
           </c-card>
         </app-docs-example>
@@ -77,15 +80,15 @@
           are arranged properly.
         </p>
         <app-docs-example href="components/card/#body">
-          <c-card style="width: 18rem;">
+          <c-card style="width: 18rem">
             <c-card-body>
               <h5 cCardTitle>Card title</h5>
               <h6 cCardSubtitle class="mb-2 text-medium-emphasis">
                 Card subtitle
               </h6>
               <p cCardText>
-                Some quick example text to build on the card title and make up the
-                bulk of the card content.
+                Some quick example text to build on the card title and make up
+                the bulk of the card content.
               </p>
               <a cCardLink>Card link</a>
               <a cCardLink>Another link</a>
@@ -108,8 +111,10 @@
           regular HTML tags.
         </p>
         <app-docs-example href="components/card/#images">
-          <c-card style="width: 18rem;">
-            <ng-container *ngTemplateOutlet="imgPlaceholderTemplate"></ng-container>
+          <c-card style="width: 18rem">
+            <ng-container
+              *ngTemplateOutlet="imgPlaceholderTemplate"
+            ></ng-container>
             <c-card-body>
               <p cCardText>
                 Some quick example <strong>text</strong> to build on the card
@@ -178,13 +183,15 @@
           styles, and a list group—all wrapped in a fixed-width card.
         </p>
         <app-docs-example href="components/card/#kitchen-sink">
-          <c-card style="width: 18rem;">
-            <ng-container *ngTemplateOutlet="imgPlaceholderTemplate"></ng-container>
+          <c-card style="width: 18rem">
+            <ng-container
+              *ngTemplateOutlet="imgPlaceholderTemplate"
+            ></ng-container>
             <c-card-body>
               <h5 cCardTitle>Card title</h5>
               <p cCardText>
-                Some quick example text to build on the card title and make up the
-                bulk of the card content.
+                Some quick example text to build on the card title and make up
+                the bulk of the card content.
               </p>
             </c-card-body>
             <ul [flush]="true" cListGroup>
@@ -216,7 +223,9 @@
               <c-card class="mb-4">
                 <c-card-header>Header</c-card-header>
                 <c-card-body>
-                  <ng-container *ngTemplateOutlet="cardBodyTemplate"></ng-container>
+                  <ng-container
+                    *ngTemplateOutlet="cardBodyTemplate"
+                  ></ng-container>
                 </c-card-body>
               </c-card>
             </app-docs-example>
@@ -232,7 +241,9 @@
                   <h5>Header</h5>
                 </c-card-header>
                 <c-card-body>
-                  <ng-container *ngTemplateOutlet="cardBodyTemplate"></ng-container>
+                  <ng-container
+                    *ngTemplateOutlet="cardBodyTemplate"
+                  ></ng-container>
                 </c-card-body>
               </c-card>
             </app-docs-example>
@@ -263,12 +274,13 @@
               <c-card class="text-center mb-4">
                 <c-card-header>Header</c-card-header>
                 <c-card-body>
-                  <ng-container *ngTemplateOutlet="cardBodyTemplate"></ng-container>
+                  <ng-container
+                    *ngTemplateOutlet="cardBodyTemplate"
+                  ></ng-container>
                 </c-card-body>
                 <c-card-footer class="text-medium-emphasis"
-                >2 days ago
-                </c-card-footer
-                >
+                  >2 days ago
+                </c-card-footer>
               </c-card>
             </app-docs-example>
           </c-col>
@@ -296,14 +308,18 @@
             <c-col sm="6">
               <c-card class="mb-4">
                 <c-card-body>
-                  <ng-container *ngTemplateOutlet="cardBodyTemplate"></ng-container>
+                  <ng-container
+                    *ngTemplateOutlet="cardBodyTemplate"
+                  ></ng-container>
                 </c-card-body>
               </c-card>
             </c-col>
             <c-col sm="6">
               <c-card class="mb-4">
                 <c-card-body>
-                  <ng-container *ngTemplateOutlet="cardBodyTemplate"></ng-container>
+                  <ng-container
+                    *ngTemplateOutlet="cardBodyTemplate"
+                  ></ng-container>
                 </c-card-body>
               </c-card>
             </c-col>
@@ -313,7 +329,7 @@
         <p class="text-medium-emphasis small">
           Use some of
           <a href="https://coreui.io/docs/utilities/sizing/"
-          >available sizing utilities</a
+            >available sizing utilities</a
           >
           to rapidly set a card width.
         </p>
@@ -334,7 +350,7 @@
           Use custom CSS in your stylesheets or as inline styles to set a width.
         </p>
         <app-docs-example href="components/card/#sizing">
-          <c-card class="mb-4" style="width: 18rem;">
+          <c-card class="mb-4" style="width: 18rem">
             <c-card-body>
               <ng-container *ngTemplateOutlet="cardBodyTemplate"></ng-container>
             </c-card-body>
@@ -353,7 +369,7 @@
           You can instantly change the text arrangement of any card—in its whole
           or specific parts—with
           <a href="https://coreui.io/docs/utilities/text/#text-alignment"
-          >text align</a
+            >text align</a
           >
           classes.
         </p>
@@ -362,21 +378,27 @@
             <c-col>
               <c-card class="mb-4">
                 <c-card-body>
-                  <ng-container *ngTemplateOutlet="cardBodyTemplate"></ng-container>
+                  <ng-container
+                    *ngTemplateOutlet="cardBodyTemplate"
+                  ></ng-container>
                 </c-card-body>
               </c-card>
             </c-col>
             <c-col>
               <c-card class="text-center mb-4">
                 <c-card-body>
-                  <ng-container *ngTemplateOutlet="cardBodyTemplate"></ng-container>
+                  <ng-container
+                    *ngTemplateOutlet="cardBodyTemplate"
+                  ></ng-container>
                 </c-card-body>
               </c-card>
             </c-col>
             <c-col>
               <c-card class="text-end mb-4">
                 <c-card-body>
-                  <ng-container *ngTemplateOutlet="cardBodyTemplate"></ng-container>
+                  <ng-container
+                    *ngTemplateOutlet="cardBodyTemplate"
+                  ></ng-container>
                 </c-card-body>
               </c-card>
             </c-col>
@@ -402,22 +424,20 @@
                 <c-card-header>
                   <c-nav class="card-header-tabs" variant="tabs">
                     <c-nav-item>
-                      <a [active]="true" cNavLink routerLink="./">
-                        Active
-                      </a>
+                      <a [active]="true" cNavLink routerLink="./"> Active </a>
                     </c-nav-item>
                     <c-nav-item>
                       <a cNavLink routerLink="./">Link</a>
                     </c-nav-item>
                     <c-nav-item>
-                      <a cNavLink disabled routerLink="./">
-                        Disabled
-                      </a>
+                      <a cNavLink disabled routerLink="./"> Disabled </a>
                     </c-nav-item>
                   </c-nav>
                 </c-card-header>
                 <c-card-body>
-                  <ng-container *ngTemplateOutlet="cardBodyTemplate"></ng-container>
+                  <ng-container
+                    *ngTemplateOutlet="cardBodyTemplate"
+                  ></ng-container>
                 </c-card-body>
               </c-card>
             </app-docs-example>
@@ -428,22 +448,20 @@
                 <c-card-header>
                   <c-nav class="card-header-pills" variant="pills">
                     <c-nav-item>
-                      <a [active]="true" cNavLink routerLink="./">
-                        Active
-                      </a>
+                      <a [active]="true" cNavLink routerLink="./"> Active </a>
                     </c-nav-item>
                     <c-nav-item>
                       <a cNavLink routerLink="./">Link</a>
                     </c-nav-item>
                     <c-nav-item>
-                      <a cNavLink disabled routerLink="./">
-                        Disabled
-                      </a>
+                      <a cNavLink disabled routerLink="./"> Disabled </a>
                     </c-nav-item>
                   </c-nav>
                 </c-card-header>
                 <c-card-body>
-                  <ng-container *ngTemplateOutlet="cardBodyTemplate"></ng-container>
+                  <ng-container
+                    *ngTemplateOutlet="cardBodyTemplate"
+                  ></ng-container>
                 </c-card-body>
               </c-card>
             </app-docs-example>
@@ -459,22 +477,27 @@
       </c-card-header>
       <c-card-body>
         <p class="text-medium-emphasis small">
-          Similar to headers and footers, cards can include top and bottom &#34;image
-          caps&#34;—images at the top or bottom of a card.
+          Similar to headers and footers, cards can include top and bottom
+          &#34;image caps&#34;—images at the top or bottom of a card.
         </p>
         <app-docs-example href="components/card/#image-caps">
           <c-row>
             <c-col lg="6">
               <c-card class="mb-3">
-                <ng-container *ngTemplateOutlet="imgPlaceholderTemplate"></ng-container>
+                <ng-container
+                  *ngTemplateOutlet="imgPlaceholderTemplate"
+                ></ng-container>
                 <c-card-body>
                   <h5 cCardTitle>Card title</h5>
                   <p cCardText>
-                    This is a wider card with supporting text below as a natural lead-in to
-                    additional content. This content is a little bit longer.
+                    This is a wider card with supporting text below as a natural
+                    lead-in to additional content. This content is a little bit
+                    longer.
                   </p>
                   <p cCardText>
-                    <small class="text-medium-emphasis">Last updated 3 mins ago</small>
+                    <small class="text-medium-emphasis"
+                      >Last updated 3 mins ago</small
+                    >
                   </p>
                 </c-card-body>
               </c-card>
@@ -484,14 +507,22 @@
                 <c-card-body>
                   <h5 cCardTitle>Card title</h5>
                   <p cCardText>
-                    This is a wider card with supporting text below as a natural lead-in to
-                    additional content. This content is a little bit longer.
+                    This is a wider card with supporting text below as a natural
+                    lead-in to additional content. This content is a little bit
+                    longer.
                   </p>
                   <p cCardText>
-                    <small class="text-medium-emphasis">Last updated 3 mins ago</small>
+                    <small class="text-medium-emphasis"
+                      >Last updated 3 mins ago</small
+                    >
                   </p>
                 </c-card-body>
-                <ng-container *ngTemplateOutlet="imgPlaceholderTemplate; context: {$implicit: 'bottom'}"></ng-container>
+                <ng-container
+                  *ngTemplateOutlet="
+                    imgPlaceholderTemplate;
+                    context: { $implicit: 'bottom' }
+                  "
+                ></ng-container>
               </c-card>
             </c-col>
           </c-row>
@@ -506,7 +537,8 @@
       </c-card-header>
       <c-card-body>
         <p class="text-medium-emphasis small">
-          Cards include various options for customizing their backgrounds, borders, and color.
+          Cards include various options for customizing their backgrounds,
+          borders, and color.
         </p>
         <h3>Background and color</h3>
         <p class="text-medium-emphasis small">
@@ -515,17 +547,25 @@
         <app-docs-example href="components/card/#background-and-color">
           <c-row>
             <c-col *ngFor="let item of colors; index as i" lg="4">
-              <c-card [color]="item.color"
-                      [textColor]="item.color === 'warning' || item.color === 'light' ? '' :  'white'"
-                      class="mb-3">
+              <c-card
+                [color]="item.color"
+                [textColor]="
+                  item.color === 'warning' || item.color === 'light'
+                    ? ''
+                    : 'white'
+                "
+                class="mb-3"
+              >
                 <c-card-header>Header</c-card-header>
                 <c-card-body class="bg">
-                  <h5 cCardTitle>{{item.color}} card title</h5>
+                  <h5 cCardTitle>{{ item.color }} card title</h5>
                   <p cCardText>
-                    Some quick example text to build on the card title and make up the bulk of
-                    the card&#39;s content.
+                    Some quick example text to build on the card title and make
+                    up the bulk of the card&#39;s content.
                   </p>
-                  <button [color]="item.color" cButton class="shadow">Go somewhere</button>
+                  <button [color]="item.color" cButton class="shadow">
+                    Go somewhere
+                  </button>
                 </c-card-body>
               </c-card>
             </c-col>
@@ -533,21 +573,29 @@
         </app-docs-example>
         <h3>Border</h3>
         <p class="text-medium-emphasis small">
-          Use <a href="https://coreui.io/docs/utilities/borders/">border utilities</a> to change
-          just the <code>border-color</code> of a card. Note that you can set
-          <code>textColor</code> property on the <code>&lt;c-card&gt;</code> or a subset of the
-          card&#39;s contents as shown below.
+          Use
+          <a href="https://coreui.io/docs/utilities/borders/"
+            >border utilities</a
+          >
+          to change just the <code>border-color</code> of a card. Note that you
+          can set <code>textColor</code> property on the
+          <code>&lt;c-card&gt;</code> or a subset of the card&#39;s contents as
+          shown below.
         </p>
         <app-docs-example href="components/card/#border">
           <c-row>
             <c-col *ngFor="let item of colors; index as i" lg="4">
-              <c-card [cBorder]="item.color" [textColor]="item.textColor" class="mb-3">
+              <c-card
+                [cBorder]="item.color"
+                [textColor]="item.textColor"
+                class="mb-3"
+              >
                 <c-card-header>Header</c-card-header>
                 <c-card-body>
-                  <h5 cCardTitle>{{item.color}} card title</h5>
+                  <h5 cCardTitle>{{ item.color }} card title</h5>
                   <p cCardText>
-                    Some quick example text to build on the card title and make up the bulk of
-                    the card&#39;s content.
+                    Some quick example text to build on the card title and make
+                    up the bulk of the card&#39;s content.
                   </p>
                   <button [color]="item.color" cButton>Go somewhere</button>
                 </c-card-body>
@@ -557,21 +605,29 @@
         </app-docs-example>
         <h3>Top border</h3>
         <p class="text-medium-emphasis small">
-          Use <a href="https://coreui.io/docs/utilities/borders/">border utilities</a> to change
-          just the <code>border-color</code> of a card. Note that you can set
-          <code>textColor</code> property on the <code>&lt;c-card&gt;</code> or a subset of the
-          card&#39;s contents as shown below.
+          Use
+          <a href="https://coreui.io/docs/utilities/borders/"
+            >border utilities</a
+          >
+          to change just the <code>border-color</code> of a card. Note that you
+          can set <code>textColor</code> property on the
+          <code>&lt;c-card&gt;</code> or a subset of the card&#39;s contents as
+          shown below.
         </p>
         <app-docs-example href="components/card/#top-border">
           <c-row>
             <c-col *ngFor="let item of colors; index as i" lg="4">
-              <c-card [cBorder]="{top: {color: item.color, width: 3}}" [textColor]="item.textColor" class="mb-3">
+              <c-card
+                [cBorder]="{ top: { color: item.color, width: 3 } }"
+                [textColor]="item.textColor"
+                class="mb-3"
+              >
                 <c-card-header>Header</c-card-header>
                 <c-card-body>
-                  <h5 cCardTitle>{{item.color}} card title</h5>
+                  <h5 cCardTitle>{{ item.color }} card title</h5>
                   <p cCardText>
-                    Some quick example text to build on the card title and make up the bulk of
-                    the card&#39;s content.
+                    Some quick example text to build on the card title and make
+                    up the bulk of the card&#39;s content.
                   </p>
                   <button [color]="item.color" cButton>Go somewhere</button>
                 </c-card-body>
@@ -590,97 +646,125 @@
       </c-card-header>
       <c-card-body>
         <p class="text-medium-emphasis small">
-          Use card groups to render cards as a single, attached element with equal width and
-          height columns. Card groups start off stacked and use <code>display: flex;</code> to
-          become attached with uniform dimensions starting at the <code>sm</code> breakpoint.
+          Use card groups to render cards as a single, attached element with
+          equal width and height columns. Card groups start off stacked and use
+          <code>display: flex;</code> to become attached with uniform dimensions
+          starting at the <code>sm</code> breakpoint.
         </p>
         <app-docs-example href="components/card/#card-groups">
           <c-card-group class="mb-4">
             <c-card>
-              <ng-container *ngTemplateOutlet="imgPlaceholderTemplate"></ng-container>
+              <ng-container
+                *ngTemplateOutlet="imgPlaceholderTemplate"
+              ></ng-container>
               <c-card-body>
                 <h5 cCardTitle>Card title</h5>
                 <p cCardText>
-                  This is a wider card with supporting text below as a natural lead-in to
-                  additional content. This content is a little bit longer.
+                  This is a wider card with supporting text below as a natural
+                  lead-in to additional content. This content is a little bit
+                  longer.
                 </p>
                 <p cCardText>
-                  <small class="text-medium-emphasis">Last updated 3 mins ago</small>
+                  <small class="text-medium-emphasis"
+                    >Last updated 3 mins ago</small
+                  >
                 </p>
               </c-card-body>
             </c-card>
             <c-card>
-              <ng-container *ngTemplateOutlet="imgPlaceholderTemplate"></ng-container>
+              <ng-container
+                *ngTemplateOutlet="imgPlaceholderTemplate"
+              ></ng-container>
               <c-card-body>
                 <h5 cCardTitle>Card title</h5>
                 <p cCardText>
-                  This card has supporting text below as a natural lead-in to additional
-                  content.
+                  This card has supporting text below as a natural lead-in to
+                  additional content.
                 </p>
                 <p cCardText>
-                  <small class="text-medium-emphasis">Last updated 3 mins ago</small>
+                  <small class="text-medium-emphasis"
+                    >Last updated 3 mins ago</small
+                  >
                 </p>
               </c-card-body>
             </c-card>
             <c-card>
-              <ng-container *ngTemplateOutlet="imgPlaceholderTemplate"></ng-container>
+              <ng-container
+                *ngTemplateOutlet="imgPlaceholderTemplate"
+              ></ng-container>
               <c-card-body>
                 <h5 cCardTitle>Card title</h5>
                 <p cCardText>
-                  This is a wider card with supporting text below as a natural lead-in to
-                  additional content. This card has even longer content than the first to show
-                  that equal height action.
+                  This is a wider card with supporting text below as a natural
+                  lead-in to additional content. This card has even longer
+                  content than the first to show that equal height action.
                 </p>
                 <p cCardText>
-                  <small class="text-medium-emphasis">Last updated 3 mins ago</small>
+                  <small class="text-medium-emphasis"
+                    >Last updated 3 mins ago</small
+                  >
                 </p>
               </c-card-body>
             </c-card>
           </c-card-group>
         </app-docs-example>
         <p class="text-medium-emphasis small">
-          When using card groups with footers, their content will automatically line up.
+          When using card groups with footers, their content will automatically
+          line up.
         </p>
         <app-docs-example href="components/card/#card-groups">
           <c-card-group class="mb-4">
             <c-card>
-              <ng-container *ngTemplateOutlet="imgPlaceholderTemplate"></ng-container>
+              <ng-container
+                *ngTemplateOutlet="imgPlaceholderTemplate"
+              ></ng-container>
               <c-card-body>
                 <h5 cCardTitle>Card title</h5>
                 <p cCardText>
-                  This is a wider card with supporting text below as a natural lead-in to
-                  additional content. This content is a little bit longer.
+                  This is a wider card with supporting text below as a natural
+                  lead-in to additional content. This content is a little bit
+                  longer.
                 </p>
               </c-card-body>
               <c-card-footer>
-                <small class="text-medium-emphasis">Last updated 3 mins ago</small>
+                <small class="text-medium-emphasis"
+                  >Last updated 3 mins ago</small
+                >
               </c-card-footer>
             </c-card>
             <c-card>
-              <ng-container *ngTemplateOutlet="imgPlaceholderTemplate"></ng-container>
+              <ng-container
+                *ngTemplateOutlet="imgPlaceholderTemplate"
+              ></ng-container>
               <c-card-body>
                 <h5 cCardTitle>Card title</h5>
                 <p cCardText>
-                  This card has supporting text below as a natural lead-in to additional
-                  content.
+                  This card has supporting text below as a natural lead-in to
+                  additional content.
                 </p>
               </c-card-body>
               <c-card-footer>
-                <small class="text-medium-emphasis">Last updated 3 mins ago</small>
+                <small class="text-medium-emphasis"
+                  >Last updated 3 mins ago</small
+                >
               </c-card-footer>
             </c-card>
             <c-card>
-              <ng-container *ngTemplateOutlet="imgPlaceholderTemplate"></ng-container>
+              <ng-container
+                *ngTemplateOutlet="imgPlaceholderTemplate"
+              ></ng-container>
               <c-card-body>
                 <h5 cCardTitle>Card title</h5>
                 <p cCardText>
-                  This is a wider card with supporting text below as a natural lead-in to
-                  additional content. This card has even longer content than the first to show
-                  that equal height action.
+                  This is a wider card with supporting text below as a natural
+                  lead-in to additional content. This card has even longer
+                  content than the first to show that equal height action.
                 </p>
               </c-card-body>
               <c-card-footer>
-                <small class="text-medium-emphasis">Last updated 3 mins ago</small>
+                <small class="text-medium-emphasis"
+                  >Last updated 3 mins ago</small
+                >
               </c-card-footer>
             </c-card>
           </c-card-group>
@@ -695,70 +779,92 @@
       </c-card-header>
       <c-card-body>
         <p class="text-medium-emphasis small">
-          Use the <code>c-row</code> component and set <code>xs|sm|md|lg|xl|xxl</code> property
-          to control how many grid columns (wrapped around your cards) you show per row. For
-          example <code>xs="1"</code> laying out the cards on one column, and <code>md="1"</code> splitting
-          four cards to equal width across multiple rows, from the medium breakpoint up.
+          Use the <code>c-row</code> component and set
+          <code>xs|sm|md|lg|xl|xxl</code> property to control how many grid
+          columns (wrapped around your cards) you show per row. For example
+          <code>xs="1"</code> laying out the cards on one column, and
+          <code>md="1"</code> splitting four cards to equal width across
+          multiple rows, from the medium breakpoint up.
         </p>
         <app-docs-example href="components/card/#grid-cards">
-          <c-row [gutter]="{g: 4}" class="mb-3" [md]="2" [xs]="1">
+          <c-row [gutter]="{ g: 4 }" class="mb-3" [md]="2" [xs]="1">
             <c-col>
               <c-card>
-                <ng-container *ngTemplateOutlet="imgPlaceholderTemplate"></ng-container>
+                <ng-container
+                  *ngTemplateOutlet="imgPlaceholderTemplate"
+                ></ng-container>
                 <c-card-body>
                   <h5 cCardTitle>Card title</h5>
                   <p cCardText>
-                    This is a wider card with supporting text below as a natural lead-in to
-                    additional content. This content is a little bit longer.
+                    This is a wider card with supporting text below as a natural
+                    lead-in to additional content. This content is a little bit
+                    longer.
                   </p>
                 </c-card-body>
                 <c-card-footer>
-                  <small class="text-medium-emphasis">Last updated 3 mins ago</small>
+                  <small class="text-medium-emphasis"
+                    >Last updated 3 mins ago</small
+                  >
                 </c-card-footer>
               </c-card>
             </c-col>
             <c-col>
               <c-card>
-                <ng-container *ngTemplateOutlet="imgPlaceholderTemplate"></ng-container>
+                <ng-container
+                  *ngTemplateOutlet="imgPlaceholderTemplate"
+                ></ng-container>
                 <c-card-body>
                   <h5 cCardTitle>Card title</h5>
                   <p cCardText>
-                    This is a wider card with supporting text below as a natural lead-in to
-                    additional content. This content is a little bit longer.
+                    This is a wider card with supporting text below as a natural
+                    lead-in to additional content. This content is a little bit
+                    longer.
                   </p>
                 </c-card-body>
                 <c-card-footer>
-                  <small class="text-medium-emphasis">Last updated 3 mins ago</small>
+                  <small class="text-medium-emphasis"
+                    >Last updated 3 mins ago</small
+                  >
                 </c-card-footer>
               </c-card>
             </c-col>
             <c-col>
               <c-card>
-                <ng-container *ngTemplateOutlet="imgPlaceholderTemplate"></ng-container>
+                <ng-container
+                  *ngTemplateOutlet="imgPlaceholderTemplate"
+                ></ng-container>
                 <c-card-body>
                   <h5 cCardTitle>Card title</h5>
                   <p cCardText>
-                    This is a wider card with supporting text below as a natural lead-in to
-                    additional content. This content is a little bit longer.
+                    This is a wider card with supporting text below as a natural
+                    lead-in to additional content. This content is a little bit
+                    longer.
                   </p>
                 </c-card-body>
                 <c-card-footer>
-                  <small class="text-medium-emphasis">Last updated 3 mins ago</small>
+                  <small class="text-medium-emphasis"
+                    >Last updated 3 mins ago</small
+                  >
                 </c-card-footer>
               </c-card>
             </c-col>
             <c-col>
               <c-card>
-                <ng-container *ngTemplateOutlet="imgPlaceholderTemplate"></ng-container>
+                <ng-container
+                  *ngTemplateOutlet="imgPlaceholderTemplate"
+                ></ng-container>
                 <c-card-body>
                   <h5 cCardTitle>Card title</h5>
                   <p cCardText>
-                    This is a wider card with supporting text below as a natural lead-in to
-                    additional content. This content is a little bit longer.
+                    This is a wider card with supporting text below as a natural
+                    lead-in to additional content. This content is a little bit
+                    longer.
                   </p>
                 </c-card-body>
                 <c-card-footer>
-                  <small class="text-medium-emphasis">Last updated 3 mins ago</small>
+                  <small class="text-medium-emphasis"
+                    >Last updated 3 mins ago</small
+                  >
                 </c-card-footer>
               </c-card>
             </c-col>
@@ -768,64 +874,84 @@
           Change it to <code>md="3"</code> and you'll see the fourth card wraps.
         </p>
         <app-docs-example href="components/card/#grid-cards">
-          <c-row [gutter]="{g: 4}" [md]="3" [xs]="1">
+          <c-row [gutter]="{ g: 4 }" [md]="3" [xs]="1">
             <c-col>
               <c-card>
-                <ng-container *ngTemplateOutlet="imgPlaceholderTemplate"></ng-container>
+                <ng-container
+                  *ngTemplateOutlet="imgPlaceholderTemplate"
+                ></ng-container>
                 <c-card-body>
                   <h5 cCardTitle>Card title</h5>
                   <p cCardText>
-                    This is a wider card with supporting text below as a natural lead-in to
-                    additional content. This content is a little bit longer.
+                    This is a wider card with supporting text below as a natural
+                    lead-in to additional content. This content is a little bit
+                    longer.
                   </p>
                 </c-card-body>
                 <c-card-footer>
-                  <small class="text-medium-emphasis">Last updated 3 mins ago</small>
+                  <small class="text-medium-emphasis"
+                    >Last updated 3 mins ago</small
+                  >
                 </c-card-footer>
               </c-card>
             </c-col>
             <c-col>
               <c-card>
-                <ng-container *ngTemplateOutlet="imgPlaceholderTemplate"></ng-container>
+                <ng-container
+                  *ngTemplateOutlet="imgPlaceholderTemplate"
+                ></ng-container>
                 <c-card-body>
                   <h5 cCardTitle>Card title</h5>
                   <p cCardText>
-                    This is a wider card with supporting text below as a natural lead-in to
-                    additional content. This content is a little bit longer.
+                    This is a wider card with supporting text below as a natural
+                    lead-in to additional content. This content is a little bit
+                    longer.
                   </p>
                 </c-card-body>
                 <c-card-footer>
-                  <small class="text-medium-emphasis">Last updated 3 mins ago</small>
+                  <small class="text-medium-emphasis"
+                    >Last updated 3 mins ago</small
+                  >
                 </c-card-footer>
               </c-card>
             </c-col>
             <c-col>
               <c-card>
-                <ng-container *ngTemplateOutlet="imgPlaceholderTemplate"></ng-container>
+                <ng-container
+                  *ngTemplateOutlet="imgPlaceholderTemplate"
+                ></ng-container>
                 <c-card-body>
                   <h5 cCardTitle>Card title</h5>
                   <p cCardText>
-                    This is a wider card with supporting text below as a natural lead-in to
-                    additional content. This content is a little bit longer.
+                    This is a wider card with supporting text below as a natural
+                    lead-in to additional content. This content is a little bit
+                    longer.
                   </p>
                 </c-card-body>
                 <c-card-footer>
-                  <small class="text-medium-emphasis">Last updated 3 mins ago</small>
+                  <small class="text-medium-emphasis"
+                    >Last updated 3 mins ago</small
+                  >
                 </c-card-footer>
               </c-card>
             </c-col>
             <c-col>
               <c-card>
-                <ng-container *ngTemplateOutlet="imgPlaceholderTemplate"></ng-container>
+                <ng-container
+                  *ngTemplateOutlet="imgPlaceholderTemplate"
+                ></ng-container>
                 <c-card-body>
                   <h5 cCardTitle>Card title</h5>
                   <p cCardText>
-                    This is a wider card with supporting text below as a natural lead-in to
-                    additional content. This content is a little bit longer.
+                    This is a wider card with supporting text below as a natural
+                    lead-in to additional content. This content is a little bit
+                    longer.
                   </p>
                 </c-card-body>
                 <c-card-footer>
-                  <small class="text-medium-emphasis">Last updated 3 mins ago</small>
+                  <small class="text-medium-emphasis"
+                    >Last updated 3 mins ago</small
+                  >
                 </c-card-footer>
               </c-card>
             </c-col>
@@ -835,7 +961,6 @@
     </c-card>
   </c-col>
 </c-row>
-
 
 <ng-template #imgPlaceholderTemplate let-orientation>
   <svg
@@ -851,14 +976,24 @@
   >
     <title>Placeholder</title>
     <rect fill="#868e96" height="100%" width="100%"></rect>
-    <text dominant-baseline="middle" dy=".3em" fill="#dee2e6" text-anchor="middle" x="50%" y="50%">Image cap</text>
+    <text
+      dominant-baseline="middle"
+      dy=".3em"
+      fill="#dee2e6"
+      text-anchor="middle"
+      x="50%"
+      y="50%"
+    >
+      Image cap
+    </text>
   </svg>
 </ng-template>
 
 <ng-template #cardBodyTemplate>
   <h5 cCardTitle>Card title</h5>
   <p cCardText>
-    Some quick example text to build on the card title and make up the bulk of the card's content.
+    Some quick example text to build on the card title and make up the bulk of
+    the card's content.
   </p>
   <button cButton color="primary">Go somewhere</button>
 </ng-template>

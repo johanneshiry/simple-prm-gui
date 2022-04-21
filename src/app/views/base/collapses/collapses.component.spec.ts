@@ -1,14 +1,19 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { RouterTestingModule } from '@angular/router/testing';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { NoopAnimationsModule } from "@angular/platform-browser/animations";
+import { RouterTestingModule } from "@angular/router/testing";
 
-import { ButtonModule, CardModule, CollapseModule, GridModule } from '@coreui/angular';
-import { IconSetService } from '@coreui/icons-angular';
-import { iconSubset } from '../../../common/icon-subset';
-import { DocsComponentsModule } from '../../../../components';
-import { CollapsesComponent } from './collapses.component';
+import {
+  ButtonModule,
+  CardModule,
+  CollapseModule,
+  GridModule,
+} from "@coreui/angular";
+import { IconSetService } from "@coreui/icons-angular";
+import { iconSubset } from "../../../common/icon-subset";
+import { DocsComponentsModule } from "../../../../components";
+import { CollapsesComponent } from "./collapses.component";
 
-describe('CollapsesComponent', () => {
+describe("CollapsesComponent", () => {
   let component: CollapsesComponent;
   let fixture: ComponentFixture<CollapsesComponent>;
   let iconSetService: IconSetService;
@@ -16,10 +21,17 @@ describe('CollapsesComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [CollapsesComponent],
-      imports: [CardModule, CollapseModule, NoopAnimationsModule, GridModule, ButtonModule, DocsComponentsModule, RouterTestingModule],
-      providers: [IconSetService]
-    })
-      .compileComponents();
+      imports: [
+        CardModule,
+        CollapseModule,
+        NoopAnimationsModule,
+        GridModule,
+        ButtonModule,
+        DocsComponentsModule,
+        RouterTestingModule,
+      ],
+      providers: [IconSetService],
+    }).compileComponents();
   });
 
   beforeEach(() => {
@@ -31,7 +43,7 @@ describe('CollapsesComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

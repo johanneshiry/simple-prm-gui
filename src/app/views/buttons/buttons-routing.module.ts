@@ -1,50 +1,48 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { NgModule } from "@angular/core";
+import { RouterModule, Routes } from "@angular/router";
 
-import { ButtonsComponent } from './buttons/buttons.component';
-import { ButtonGroupsComponent } from './button-groups/button-groups.component';
-import { DropdownsComponent } from './dropdowns/dropdowns.component';
+import { ButtonsComponent } from "./buttons/buttons.component";
+import { ButtonGroupsComponent } from "./button-groups/button-groups.component";
+import { DropdownsComponent } from "./dropdowns/dropdowns.component";
 
 const routes: Routes = [
   {
-    path: '',
+    path: "",
     data: {
-      title: 'Buttons'
+      title: "Buttons",
     },
     children: [
       {
-        path: '',
-        redirectTo: 'buttons'
+        path: "",
+        redirectTo: "buttons",
       },
       {
-        path: 'buttons',
+        path: "buttons",
         component: ButtonsComponent,
         data: {
-          title: 'Buttons'
-        }
+          title: "Buttons",
+        },
       },
       {
-        path: 'button-groups',
+        path: "button-groups",
         component: ButtonGroupsComponent,
         data: {
-          title: 'Button groups'
-        }
+          title: "Button groups",
+        },
       },
       {
-        path: 'dropdowns',
+        path: "dropdowns",
         component: DropdownsComponent,
         data: {
-          title: 'Dropdowns'
-        }
+          title: "Dropdowns",
+        },
       },
-    ]
-  }
+    ],
+  },
 ];
-
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class ButtonsRoutingModule {
-}
+export class ButtonsRoutingModule {}

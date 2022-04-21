@@ -1,4 +1,4 @@
 export interface ApiContact {
-    uid: string;
-    vCard: string;
+  uid: string;
+  vCard: string;
 }

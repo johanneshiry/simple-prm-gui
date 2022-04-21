@@ -1,18 +1,17 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { DocsCalloutComponent } from './docs-callout.component';
-import { CalloutModule } from '@coreui/angular';
+import { DocsCalloutComponent } from "./docs-callout.component";
+import { CalloutModule } from "@coreui/angular";
 
-describe('DocsCalloutComponent', () => {
+describe("DocsCalloutComponent", () => {
   let component: DocsCalloutComponent;
   let fixture: ComponentFixture<DocsCalloutComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DocsCalloutComponent ],
-      imports: [CalloutModule]
-    })
-    .compileComponents();
+      declarations: [DocsCalloutComponent],
+      imports: [CalloutModule],
+    }).compileComponents();
   });
 
   beforeEach(() => {
@@ -21,7 +20,7 @@ describe('DocsCalloutComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

@@ -1,24 +1,35 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { ButtonModule, DropdownModule, GridModule, WidgetModule } from '@coreui/angular';
-import { IconModule } from '@coreui/icons-angular';
-import { ChartjsModule } from '@coreui/angular-chartjs';
-import { IconSetService } from '@coreui/icons-angular';
-import { iconSubset } from '../../../common/icon-subset';
-import { WidgetsDropdownComponent } from './widgets-dropdown.component';
+import {
+  ButtonModule,
+  DropdownModule,
+  GridModule,
+  WidgetModule,
+} from "@coreui/angular";
+import { IconModule } from "@coreui/icons-angular";
+import { ChartjsModule } from "@coreui/angular-chartjs";
+import { IconSetService } from "@coreui/icons-angular";
+import { iconSubset } from "../../../common/icon-subset";
+import { WidgetsDropdownComponent } from "./widgets-dropdown.component";
 
-describe('WidgetsDropdownComponent', () => {
+describe("WidgetsDropdownComponent", () => {
   let component: WidgetsDropdownComponent;
   let fixture: ComponentFixture<WidgetsDropdownComponent>;
   let iconSetService: IconSetService;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ WidgetsDropdownComponent ],
-      imports: [WidgetModule, DropdownModule, IconModule, ButtonModule, ChartjsModule, GridModule],
-      providers: [IconSetService]
-    })
-    .compileComponents();
+      declarations: [WidgetsDropdownComponent],
+      imports: [
+        WidgetModule,
+        DropdownModule,
+        IconModule,
+        ButtonModule,
+        ChartjsModule,
+        GridModule,
+      ],
+      providers: [IconSetService],
+    }).compileComponents();
   });
 
   beforeEach(() => {
@@ -30,7 +41,7 @@ describe('WidgetsDropdownComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

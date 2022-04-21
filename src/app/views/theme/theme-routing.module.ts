@@ -1,32 +1,32 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { NgModule } from "@angular/core";
+import { Routes, RouterModule } from "@angular/router";
 
-import { ColorsComponent } from './colors.component';
-import { TypographyComponent } from './typography.component';
+import { ColorsComponent } from "./colors.component";
+import { TypographyComponent } from "./typography.component";
 
 const routes: Routes = [
   {
-    path: '',
+    path: "",
     data: {
-      title: 'Theme',
+      title: "Theme",
     },
     children: [
       {
-        path: '',
-        redirectTo: 'colors',
+        path: "",
+        redirectTo: "colors",
       },
       {
-        path: 'colors',
+        path: "colors",
         component: ColorsComponent,
         data: {
-          title: 'Colors',
+          title: "Colors",
         },
       },
       {
-        path: 'typography',
+        path: "typography",
         component: TypographyComponent,
         data: {
-          title: 'Typography',
+          title: "Typography",
         },
       },
     ],

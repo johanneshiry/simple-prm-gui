@@ -1,17 +1,19 @@
-import { AfterContentInit, ChangeDetectionStrategy, ChangeDetectorRef, Component } from '@angular/core';
-import { getStyle } from '@coreui/utils/src';
+import {
+  AfterContentInit,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+} from "@angular/core";
+import { getStyle } from "@coreui/utils/src";
 
 @Component({
-  selector: 'app-widgets-e',
-  templateUrl: './widgets-e.component.html',
-  styleUrls: ['./widgets-e.component.scss'],
-  changeDetection: ChangeDetectionStrategy.Default
+  selector: "app-widgets-e",
+  templateUrl: "./widgets-e.component.html",
+  styleUrls: ["./widgets-e.component.scss"],
+  changeDetection: ChangeDetectionStrategy.Default,
 })
 export class WidgetsEComponent implements AfterContentInit {
-
-  constructor(
-    private changeDetectorRef: ChangeDetectorRef
-  ) {
+  constructor(private changeDetectorRef: ChangeDetectorRef) {
     this.prepareLabels();
     this.prepareDatasets();
     this.prepareData();
@@ -24,41 +26,41 @@ export class WidgetsEComponent implements AfterContentInit {
     maintainAspectRatio: false,
     plugins: {
       legend: {
-        display: false
-      }
+        display: false,
+      },
     },
     scales: {
       x: {
-        display: false
+        display: false,
       },
       y: {
-        display: false
-      }
-    }
+        display: false,
+      },
+    },
   };
   lineOptions = {
     maintainAspectRatio: false,
     elements: {
       line: {
-        tension: 0.4
+        tension: 0.4,
       },
       point: {
-        radius: 0
-      }
+        radius: 0,
+      },
     },
     plugins: {
       legend: {
-        display: false
-      }
+        display: false,
+      },
     },
     scales: {
       x: {
-        display: false
+        display: false,
       },
       y: {
-        display: false
-      }
-    }
+        display: false,
+      },
+    },
   };
 
   get random() {
@@ -79,11 +81,11 @@ export class WidgetsEComponent implements AfterContentInit {
     return [
       {
         data: this.randomData,
-        barThickness: 'flex',
-        borderColor: 'transparent',
-        backgroundColor: 'transparent',
-        borderWidth: 1
-      }
+        barThickness: "flex",
+        borderColor: "transparent",
+        backgroundColor: "transparent",
+        borderWidth: 1,
+      },
     ];
   }
 
@@ -105,12 +107,12 @@ export class WidgetsEComponent implements AfterContentInit {
 
   prepareDatasets() {
     const params = [
-      { backgroundColor: 'danger' },
-      { backgroundColor: 'primary' },
-      { backgroundColor: 'dark' },
-      { borderColor: 'danger', borderWidth: 2 },
-      { borderColor: 'success', borderWidth: 2 },
-      { borderColor: 'info', borderWidth: 2 }
+      { backgroundColor: "danger" },
+      { backgroundColor: "primary" },
+      { backgroundColor: "dark" },
+      { borderColor: "danger", borderWidth: 2 },
+      { borderColor: "success", borderWidth: 2 },
+      { borderColor: "info", borderWidth: 2 },
     ];
     for (let i = 0; i < 6; i++) {
       this.datasets.push(this.getDataset(params[i]));
@@ -118,17 +120,17 @@ export class WidgetsEComponent implements AfterContentInit {
   }
 
   getDataset({
-               backgroundColor = 'transparent',
-               borderColor = 'transparent',
-               borderWidth = 1
-             }) {
+    backgroundColor = "transparent",
+    borderColor = "transparent",
+    borderWidth = 1,
+  }) {
     const dataset = this.baseDatasets;
     dataset[0].backgroundColor =
-      backgroundColor !== 'transparent'
+      backgroundColor !== "transparent"
         ? getStyle(`--cui-${backgroundColor}`)
         : backgroundColor;
     dataset[0].borderColor =
-      borderColor !== 'transparent'
+      borderColor !== "transparent"
         ? getStyle(`--cui-${borderColor}`)
         : borderColor;
     dataset[0].borderWidth = borderWidth;
@@ -137,10 +139,14 @@ export class WidgetsEComponent implements AfterContentInit {
 
   getDayName(shift = 0) {
     // @ts-ignore
-    const locale = navigator.language ?? navigator.userLanguage ?? navigator.systemLanguage ?? navigator.browserLanguage ?? 'en-US';
+    const locale =
+      navigator.language ??
+      navigator.userLanguage ??
+      navigator.systemLanguage ??
+      navigator.browserLanguage ??
+      "en-US";
     const baseDate = new Date(Date.UTC(2000, 1, 0)); // Monday
     baseDate.setDate(baseDate.getDate() + shift);
-    return baseDate.toLocaleDateString(locale, { weekday: 'short' });
+    return baseDate.toLocaleDateString(locale, { weekday: "short" });
   }
-
 }

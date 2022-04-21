@@ -1,12 +1,12 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
 
-import { CardModule, GridModule } from '@coreui/angular';
-import { IconModule } from '@coreui/icons-angular';
+import { CardModule, GridModule } from "@coreui/angular";
+import { IconModule } from "@coreui/icons-angular";
 
-import { CoreUIIconsComponent } from './coreui-icons.component';
-import { IconsRoutingModule } from './icons-routing.module';
-import { DocsComponentsModule } from '@docs-components/docs-components.module';
+import { CoreUIIconsComponent } from "./coreui-icons.component";
+import { IconsRoutingModule } from "./icons-routing.module";
+import { DocsComponentsModule } from "@docs-components/docs-components.module";
 
 @NgModule({
   imports: [
@@ -15,11 +15,8 @@ import { DocsComponentsModule } from '@docs-components/docs-components.module';
     GridModule,
     IconModule,
     CommonModule,
-    DocsComponentsModule
+    DocsComponentsModule,
   ],
-  declarations: [
-    CoreUIIconsComponent
-  ]
+  declarations: [CoreUIIconsComponent],
 })
-export class IconsModule {
-}
+export class IconsModule {}

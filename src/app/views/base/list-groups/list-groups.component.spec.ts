@@ -1,14 +1,21 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ReactiveFormsModule } from '@angular/forms';
-import { RouterTestingModule } from '@angular/router/testing';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { ReactiveFormsModule } from "@angular/forms";
+import { RouterTestingModule } from "@angular/router/testing";
 
-import { BadgeModule, ButtonModule, CardModule, FormModule, GridModule, ListGroupModule } from '@coreui/angular';
-import { IconSetService } from '@coreui/icons-angular';
-import { iconSubset } from '../../../common/icon-subset';
-import { DocsComponentsModule } from '../../../../components';
-import { ListGroupsComponent } from './list-groups.component';
+import {
+  BadgeModule,
+  ButtonModule,
+  CardModule,
+  FormModule,
+  GridModule,
+  ListGroupModule,
+} from "@coreui/angular";
+import { IconSetService } from "@coreui/icons-angular";
+import { iconSubset } from "../../../common/icon-subset";
+import { DocsComponentsModule } from "../../../../components";
+import { ListGroupsComponent } from "./list-groups.component";
 
-describe('ListGroupsComponent', () => {
+describe("ListGroupsComponent", () => {
   let component: ListGroupsComponent;
   let fixture: ComponentFixture<ListGroupsComponent>;
   let iconSetService: IconSetService;
@@ -16,10 +23,19 @@ describe('ListGroupsComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ListGroupsComponent],
-      imports: [ListGroupModule, ButtonModule, ReactiveFormsModule, BadgeModule, FormModule, GridModule, CardModule, DocsComponentsModule, RouterTestingModule],
-      providers: [IconSetService]
-    })
-      .compileComponents();
+      imports: [
+        ListGroupModule,
+        ButtonModule,
+        ReactiveFormsModule,
+        BadgeModule,
+        FormModule,
+        GridModule,
+        CardModule,
+        DocsComponentsModule,
+        RouterTestingModule,
+      ],
+      providers: [IconSetService],
+    }).compileComponents();
   });
 
   beforeEach(() => {
@@ -31,7 +47,7 @@ describe('ListGroupsComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

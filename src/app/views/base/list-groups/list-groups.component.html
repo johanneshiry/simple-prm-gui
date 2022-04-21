@@ -1,6 +1,9 @@
 <c-row ngPreserveWhitespaces>
   <c-col xs="12">
-    <app-docs-callout href="components/list-group" name="List Group"></app-docs-callout>
+    <app-docs-callout
+      href="components/list-group"
+      name="List Group"
+    ></app-docs-callout>
   </c-col>
   <c-col xs="12">
     <c-card class="mb-4">
@@ -85,21 +88,11 @@
         </p>
         <app-docs-example href="components/list-group/#links-and-buttons">
           <div cListGroup>
-            <a [active]="true" cListGroupItem href>
-              Cras justo odio
-            </a>
-            <a cListGroupItem href>
-              Dapibus ac facilisis in
-            </a>
-            <a cListGroupItem href>
-              Morbi leo risus
-            </a>
-            <a cListGroupItem href>
-              Porta ac consectetur ac
-            </a>
-            <a cListGroupItem disabled href>
-              Vestibulum at eros
-            </a>
+            <a [active]="true" cListGroupItem href> Cras justo odio </a>
+            <a cListGroupItem href> Dapibus ac facilisis in </a>
+            <a cListGroupItem href> Morbi leo risus </a>
+            <a cListGroupItem href> Porta ac consectetur ac </a>
+            <a cListGroupItem disabled href> Vestibulum at eros </a>
           </div>
         </app-docs-example>
       </c-card-body>
@@ -139,13 +132,13 @@
           list group items from vertical to horizontal across all breakpoints.
           Alternatively, choose a responsive variant
           <code
-          >.layout=&#34;horizontal-&#123;sm | md | lg | xl |
+            >.layout=&#34;horizontal-&#123;sm | md | lg | xl |
             xxl&#125;&#34;</code
           >
           to make a list group horizontal starting at that breakpoint's
           <code>min-width</code>. Currently
           <strong
-          >horizontal list groups cannot be combined with flush list
+            >horizontal list groups cannot be combined with flush list
             groups.</strong
           >
         </p>
@@ -195,7 +188,7 @@
               [color]="color"
               cListGroupItem
               href
-            >A simple {{ color }} list group item</a
+              >A simple {{ color }} list group item</a
             >
           </div>
         </app-docs-example>
@@ -290,7 +283,7 @@
                 diam eget risus varius blandit.
               </p>
               <small class="text-medium-emphasis"
-              >Donec id elit non mi porta.</small
+                >Donec id elit non mi porta.</small
               >
             </a>
             <a cListGroupItem href>
@@ -303,7 +296,7 @@
                 diam eget risus varius blandit.
               </p>
               <small class="text-medium-emphasis"
-              >Donec id elit non mi porta.</small
+                >Donec id elit non mi porta.</small
               >
             </a>
           </div>
@@ -324,33 +317,53 @@
         <app-docs-example href="components/list-group/#checkboxes-and-radios">
           <form [formGroup]="checkBoxes" (ngSubmit)="logValue()" cForm>
             <ul [flush]="true" cListGroup>
-              <button (click)="setValue('one');" cListGroupItem type="button">
+              <button (click)="setValue('one')" cListGroupItem type="button">
                 <c-form-check>
-                  <input cFormCheckInput formControlName="one" type="checkbox"/>
+                  <input
+                    cFormCheckInput
+                    formControlName="one"
+                    type="checkbox"
+                  />
                   <label cFormCheckLabel>Cras justo odio</label>
                 </c-form-check>
               </button>
-              <label cListGroupItem style="cursor: pointer;">
+              <label cListGroupItem style="cursor: pointer">
                 <c-form-check>
-                  <input cFormCheckInput formControlName="two" type="checkbox"/>
+                  <input
+                    cFormCheckInput
+                    formControlName="two"
+                    type="checkbox"
+                  />
                   Dapibus ac facilisis in
                 </c-form-check>
               </label>
               <li cListGroupItem>
                 <c-form-check>
-                  <input cFormCheckInput formControlName="three" type="checkbox"/>
+                  <input
+                    cFormCheckInput
+                    formControlName="three"
+                    type="checkbox"
+                  />
                   <label cFormCheckLabel>Morbi leo risus</label>
                 </c-form-check>
               </li>
               <li cListGroupItem>
                 <c-form-check>
-                  <input cFormCheckInput formControlName="four" type="checkbox"/>
+                  <input
+                    cFormCheckInput
+                    formControlName="four"
+                    type="checkbox"
+                  />
                   <label cFormCheckLabel>Orta ac consectetur ac</label>
                 </c-form-check>
               </li>
               <li cListGroupItem>
                 <c-form-check>
-                  <input cFormCheckInput formControlName="five" type="checkbox"/>
+                  <input
+                    cFormCheckInput
+                    formControlName="five"
+                    type="checkbox"
+                  />
                   <label cFormCheckLabel>Vestibulum at eros</label>
                 </c-form-check>
               </li>

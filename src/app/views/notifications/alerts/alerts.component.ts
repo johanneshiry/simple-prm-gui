@@ -1,19 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 
 @Component({
-  selector: 'app-alerts',
-  templateUrl: './alerts.component.html',
-  styleUrls: ['./alerts.component.scss']
+  selector: "app-alerts",
+  templateUrl: "./alerts.component.html",
+  styleUrls: ["./alerts.component.scss"],
 })
 export class AlertsComponent implements OnInit {
-
   visible = [true, true];
   dismissible = true;
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   onAlertVisibleChange(eventValue: any = this.visible) {
     this.visible[1] = eventValue;
@@ -26,5 +24,4 @@ export class AlertsComponent implements OnInit {
   onToggleDismiss() {
     this.dismissible = !this.dismissible;
   }
-
 }

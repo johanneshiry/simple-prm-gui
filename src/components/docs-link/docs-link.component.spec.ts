@@ -1,16 +1,15 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { DocsLinkComponent } from './docs-link.component';
+import { DocsLinkComponent } from "./docs-link.component";
 
-describe('DocsLinkComponent', () => {
+describe("DocsLinkComponent", () => {
   let component: DocsLinkComponent;
   let fixture: ComponentFixture<DocsLinkComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DocsLinkComponent ]
-    })
-    .compileComponents();
+      declarations: [DocsLinkComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {
@@ -19,7 +18,7 @@ describe('DocsLinkComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

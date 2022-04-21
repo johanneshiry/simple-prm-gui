@@ -1,13 +1,18 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { RouterTestingModule } from "@angular/router/testing";
 
-import { CardModule, DropdownModule, GridModule, NavModule } from '@coreui/angular';
-import { IconSetService } from '@coreui/icons-angular';
-import { iconSubset } from '../../../common/icon-subset';
-import { NavsComponent } from './navs.component';
-import { DocsComponentsModule } from '../../../../components';
+import {
+  CardModule,
+  DropdownModule,
+  GridModule,
+  NavModule,
+} from "@coreui/angular";
+import { IconSetService } from "@coreui/icons-angular";
+import { iconSubset } from "../../../common/icon-subset";
+import { NavsComponent } from "./navs.component";
+import { DocsComponentsModule } from "../../../../components";
 
-describe('NavsComponent', () => {
+describe("NavsComponent", () => {
   let component: NavsComponent;
   let fixture: ComponentFixture<NavsComponent>;
   let iconSetService: IconSetService;
@@ -15,10 +20,16 @@ describe('NavsComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [NavsComponent],
-      imports: [GridModule, CardModule, RouterTestingModule, NavModule, DropdownModule, DocsComponentsModule],
-      providers: [IconSetService]
-    })
-      .compileComponents();
+      imports: [
+        GridModule,
+        CardModule,
+        RouterTestingModule,
+        NavModule,
+        DropdownModule,
+        DocsComponentsModule,
+      ],
+      providers: [IconSetService],
+    }).compileComponents();
   });
 
   beforeEach(() => {
@@ -30,7 +41,7 @@ describe('NavsComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

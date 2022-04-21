@@ -1,13 +1,18 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { RouterTestingModule } from "@angular/router/testing";
 
-import { ButtonModule, CardModule, GridModule, UtilitiesModule } from '@coreui/angular';
-import { IconSetService } from '@coreui/icons-angular';
-import { iconSubset } from '../../../common/icon-subset';
-import { DocsComponentsModule } from '../../../../components';
-import { PlaceholdersComponent } from './placeholders.component';
+import {
+  ButtonModule,
+  CardModule,
+  GridModule,
+  UtilitiesModule,
+} from "@coreui/angular";
+import { IconSetService } from "@coreui/icons-angular";
+import { iconSubset } from "../../../common/icon-subset";
+import { DocsComponentsModule } from "../../../../components";
+import { PlaceholdersComponent } from "./placeholders.component";
 
-describe('PlaceholdersComponent', () => {
+describe("PlaceholdersComponent", () => {
   let component: PlaceholdersComponent;
   let fixture: ComponentFixture<PlaceholdersComponent>;
   let iconSetService: IconSetService;
@@ -15,10 +20,16 @@ describe('PlaceholdersComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [PlaceholdersComponent],
-      imports: [CardModule, GridModule, UtilitiesModule, ButtonModule, DocsComponentsModule, RouterTestingModule],
-      providers: [IconSetService]
-    })
-      .compileComponents();
+      imports: [
+        CardModule,
+        GridModule,
+        UtilitiesModule,
+        ButtonModule,
+        DocsComponentsModule,
+        RouterTestingModule,
+      ],
+      providers: [IconSetService],
+    }).compileComponents();
   });
 
   beforeEach(() => {
@@ -30,7 +41,7 @@ describe('PlaceholdersComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

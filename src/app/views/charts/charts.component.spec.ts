@@ -1,13 +1,13 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
 
-import { CardModule, GridModule } from '@coreui/angular';
-import { ChartjsModule } from '@coreui/angular-chartjs';
-import { IconSetService } from '@coreui/icons-angular';
-import { iconSubset } from '../../common/icon-subset';
-import { DocsComponentsModule } from '../../../components';
-import { ChartsComponent } from './charts.component';
+import { CardModule, GridModule } from "@coreui/angular";
+import { ChartjsModule } from "@coreui/angular-chartjs";
+import { IconSetService } from "@coreui/icons-angular";
+import { iconSubset } from "../../common/icon-subset";
+import { DocsComponentsModule } from "../../../components";
+import { ChartsComponent } from "./charts.component";
 
-describe('ChartsComponent', () => {
+describe("ChartsComponent", () => {
   let component: ChartsComponent;
   let fixture: ComponentFixture<ChartsComponent>;
   let iconSetService: IconSetService;
@@ -16,7 +16,7 @@ describe('ChartsComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ChartsComponent],
       imports: [GridModule, CardModule, DocsComponentsModule, ChartjsModule],
-      providers: [IconSetService]
+      providers: [IconSetService],
     }).compileComponents();
   }));
 
@@ -29,7 +29,7 @@ describe('ChartsComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

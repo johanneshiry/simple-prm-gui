@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { RouterTestingModule } from '@angular/router/testing';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { NoopAnimationsModule } from "@angular/platform-browser/animations";
+import { RouterTestingModule } from "@angular/router/testing";
 
 import {
   ButtonGroupModule,
@@ -10,14 +10,14 @@ import {
   DropdownModule,
   GridModule,
   NavbarModule,
-  NavModule
-} from '@coreui/angular';
-import { IconSetService } from '@coreui/icons-angular';
-import { iconSubset } from '../../../common/icon-subset';
-import { DocsComponentsModule } from '../../../../components';
-import { DropdownsComponent } from './dropdowns.component';
+  NavModule,
+} from "@coreui/angular";
+import { IconSetService } from "@coreui/icons-angular";
+import { iconSubset } from "../../../common/icon-subset";
+import { DocsComponentsModule } from "../../../../components";
+import { DropdownsComponent } from "./dropdowns.component";
 
-describe('DropdownsComponent', () => {
+describe("DropdownsComponent", () => {
   let component: DropdownsComponent;
   let fixture: ComponentFixture<DropdownsComponent>;
   let iconSetService: IconSetService;
@@ -25,10 +25,21 @@ describe('DropdownsComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [DropdownsComponent],
-      imports: [ButtonModule, DropdownModule, CollapseModule, NoopAnimationsModule, GridModule, CardModule, DocsComponentsModule, RouterTestingModule, NavModule, NavbarModule, ButtonGroupModule],
-      providers: [IconSetService]
-    })
-      .compileComponents();
+      imports: [
+        ButtonModule,
+        DropdownModule,
+        CollapseModule,
+        NoopAnimationsModule,
+        GridModule,
+        CardModule,
+        DocsComponentsModule,
+        RouterTestingModule,
+        NavModule,
+        NavbarModule,
+        ButtonGroupModule,
+      ],
+      providers: [IconSetService],
+    }).compileComponents();
   });
 
   beforeEach(() => {
@@ -40,7 +51,7 @@ describe('DropdownsComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

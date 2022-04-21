@@ -1,6 +1,6 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 import {
   ButtonGroupModule,
@@ -10,21 +10,20 @@ import {
   FormModule,
   GridModule,
   ListGroupModule,
-  SharedModule
-} from '@coreui/angular';
+  SharedModule,
+} from "@coreui/angular";
 
-import { DocsComponentsModule } from '@docs-components/docs-components.module';
+import { DocsComponentsModule } from "@docs-components/docs-components.module";
 
-import { FormsRoutingModule } from './forms-routing.module';
-import { RangesComponent } from './ranges/ranges.component';
-import { FloatingLabelsComponent } from './floating-labels/floating-labels.component';
-import { FormControlsComponent } from './form-controls/form-controls.component';
-import { SelectComponent } from './select/select.component';
-import { ChecksRadiosComponent } from './checks-radios/checks-radios.component';
-import { InputGroupsComponent } from './input-groups/input-groups.component';
-import { LayoutComponent } from './layout/layout.component';
-import { ValidationComponent } from './validation/validation.component';
-
+import { FormsRoutingModule } from "./forms-routing.module";
+import { RangesComponent } from "./ranges/ranges.component";
+import { FloatingLabelsComponent } from "./floating-labels/floating-labels.component";
+import { FormControlsComponent } from "./form-controls/form-controls.component";
+import { SelectComponent } from "./select/select.component";
+import { ChecksRadiosComponent } from "./checks-radios/checks-radios.component";
+import { InputGroupsComponent } from "./input-groups/input-groups.component";
+import { LayoutComponent } from "./layout/layout.component";
+import { ValidationComponent } from "./validation/validation.component";
 
 @NgModule({
   declarations: [
@@ -35,7 +34,7 @@ import { ValidationComponent } from './validation/validation.component';
     ChecksRadiosComponent,
     InputGroupsComponent,
     LayoutComponent,
-    ValidationComponent
+    ValidationComponent,
   ],
   imports: [
     CommonModule,
@@ -52,8 +51,7 @@ import { ValidationComponent } from './validation/validation.component';
     ButtonGroupModule,
     DropdownModule,
     SharedModule,
-    ListGroupModule
-  ]
+    ListGroupModule,
+  ],
 })
-export class CoreUIFormsModule {
-}
+export class CoreUIFormsModule {}
