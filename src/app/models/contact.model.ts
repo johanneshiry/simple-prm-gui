@@ -4,39 +4,9 @@ import { ApiContact } from "./api/api-contact.model";
 import { ContactDetailHelper } from "../views/contacts/contact-detail/contact-detail-helper";
 
 export class Contact extends ContactDetailHelper {
-  constructor(apiContact: ApiContact) {
+  constructor(vCard: VCard4) {
     super();
-    let maybeVCard = Contact.validate(apiContact.vCard);
-    if (maybeVCard instanceof Error || maybeVCard.UID === undefined) {
-      console.error(
-        "Cannot create instance of contact! Error:" +
-          (<Error>maybeVCard).message
-      );
-      throw maybeVCard;
-    } else if (apiContact.uid != maybeVCard.UID.value) {
-      throw Error(
-        "Provided uid '" +
-          apiContact.uid +
-          "' does not match uid in vCard string '" +
-          maybeVCard.UID.value +
-          "'!"
-      );
-    } else {
-      this._vCard = maybeVCard;
-    }
-  }
-
-  private static validate(vCard: string): VCard4 | Error {
-    const vCards = parseVCards(vCard).vCards;
-    if (vCards) {
-      if (vCards.length > 1 || vCards.length == 0) {
-        return Error("Multiple vCards per contact are not supported!");
-      } else {
-        return vCards[0];
-      }
-    } else {
-      return Error("Cannot parse vCard string with content '" + vCard + "'!");
-    }
+    this._vCard = vCard;
   }
 
   get vCard(): VCard4 {

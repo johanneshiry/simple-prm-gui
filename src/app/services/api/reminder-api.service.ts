@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { HttpClient } from "@angular/common/http";
 import { GlobalConstants } from "../../common/global-constants";
 import { Observable } from "rxjs";
 import { ApiReminder } from "../../models/api/reminder.model";
@@ -8,7 +8,7 @@ import { Reminder } from "../../models/reminder.model";
 @Injectable({
   providedIn: "root",
 })
-export class ReminderService {
+export class ReminderApiService {
   constructor(private http: HttpClient) {}
 
   create(stayInTouch: Reminder) {

@@ -66,7 +66,7 @@
                 <strong>Reminders</strong>
               </c-card-header>
               <c-card-body>
-                <div *ngIf="reminders; else noReminder">
+                <div *ngIf="reminders.length > 0; else noReminder">
                   <div cListGroupItem *ngFor="let reminder of reminders">
                     <c-row>
                       <c-col xs="4">{{ reminder.contactId }}</c-col>

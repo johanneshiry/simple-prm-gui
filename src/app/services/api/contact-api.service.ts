@@ -7,7 +7,7 @@ import { GlobalConstants } from "../../common/global-constants";
 @Injectable({
   providedIn: "root",
 })
-export class ContactService {
+export class ContactApiService {
   constructor(private http: HttpClient) {}
 
   get(limit: number, offset: number): Observable<ApiContact[]> {

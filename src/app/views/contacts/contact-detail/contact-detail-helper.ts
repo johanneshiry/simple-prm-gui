@@ -1,6 +1,43 @@
 import { VCard4 } from "vcard4-ts/src/vcard4Types";
+import { ApiContact } from "../../../models/api/api-contact.model";
+import { parseVCards } from "vcard4-ts";
+import { Contact } from "../../../models/contact.model";
 
 export class ContactDetailHelper {
+  static fromApiContact(apiContact: ApiContact) {
+    let maybeVCard = Contact.validate(apiContact.vCard);
+    if (maybeVCard instanceof Error || maybeVCard.UID === undefined) {
+      console.error(
+        "Cannot create instance of contact! Error: " +
+          (<Error>maybeVCard).message
+      );
+      throw maybeVCard;
+    } else if (apiContact.uid != maybeVCard.UID.value) {
+      throw Error(
+        "Provided uid '" +
+          apiContact.uid +
+          "' does not match uid in vCard string '" +
+          maybeVCard.UID.value +
+          "'!"
+      );
+    } else {
+      return new Contact(maybeVCard);
+    }
+  }
+
+  private static validate(vCard: string): VCard4 | Error {
+    const vCards = parseVCards(vCard).vCards;
+    if (vCards) {
+      if (vCards.length > 1 || vCards.length == 0) {
+        return Error("Multiple vCards per contact are not supported!");
+      } else {
+        return vCards[0];
+      }
+    } else {
+      return Error("Cannot parse vCard string with content '" + vCard + "'!");
+    }
+  }
+
   protected calculateAge(vCard: VCard4) {
     if (vCard.BDAY?.value !== undefined) {
       let today = new Date();

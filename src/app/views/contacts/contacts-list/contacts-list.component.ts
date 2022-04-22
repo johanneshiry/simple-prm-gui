@@ -1,8 +1,9 @@
 import { Component, OnInit } from "@angular/core";
 import { Contact } from "../../../models/contact.model";
-import { ContactService } from "../../../services/api/contact.service";
+import { ContactApiService } from "../../../services/api/contact-api.service";
 import { ApiContact } from "../../../models/api/api-contact.model";
 import { Router } from "@angular/router";
+import { ContactDetailsService } from "../../../services/contact-details.service";
 
 @Component({
   selector: "app-contacts",
@@ -21,7 +22,11 @@ export class ContactsListComponent implements OnInit {
   // details modal view
   // detailsVisible = false;
 
-  constructor(private contactService: ContactService, private router: Router) {}
+  constructor(
+    private contactService: ContactApiService,
+    private router: Router,
+    private contactDetailsService: ContactDetailsService
+  ) {}
 
   ngOnInit(): void {
     this.retrieveContacts();
@@ -34,8 +39,8 @@ export class ContactsListComponent implements OnInit {
         next: (apiContacts: ApiContact[]) => {
           if (apiContacts.length != 0) {
             // only execute if we have entries, otherwise keep the current array of contacts
-            this.contacts = apiContacts.map(
-              (apiContact) => new Contact(apiContact)
+            this.contacts = apiContacts.map((apiContact) =>
+              Contact.fromApiContact(apiContact)
             );
             this.currentOffset = offset;
           }
@@ -49,12 +54,16 @@ export class ContactsListComponent implements OnInit {
     this.currentContact = contact;
     this.currentIndex = index;
 
-    this.router
-      .navigate(["contacts/" + contact.fn], {
-        state: { contact: this.currentContact },
-      })
-      .then((success) => console.log("navigation success?", success))
-      .catch(console.error);
+    // prepare contact data to be passed to detail page
+    this.contactDetailsService
+      .fetchAdditionalDataAndStore(contact)
+      .subscribe((maybeContactFN) => {
+        if (maybeContactFN != undefined) {
+          this.router.navigate(["contacts/" + contact.fn]).catch(console.error);
+        } else {
+          console.error("Cannot fetch and store contact detail data!");
+        }
+      });
   }
 
   fetchPrevious(): void {
@@ -64,13 +73,4 @@ export class ContactsListComponent implements OnInit {
   fetchNext(): void {
     this.retrieveContacts(this.currentOffset + this.limit);
   }
-
-  // toggleContactDetails(contact: Contact, index: number) {
-  //   this.detailsVisible = !this.detailsVisible;
-  //   this.setActiveContact(contact, index)
-  // }
-
-  // handleDetailsVisibleChange(event: any) {
-  //   this.detailsVisible = event;
-  // }
 }
