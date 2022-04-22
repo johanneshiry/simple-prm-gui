@@ -18,6 +18,5 @@ export class DefaultHeaderComponent extends HeaderComponent {
 
   constructor(private classToggler: ClassToggleService) {
     super();
-    console.log(JSON.stringify(navItems));
   }
 }
