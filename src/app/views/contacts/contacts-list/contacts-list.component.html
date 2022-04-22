@@ -24,8 +24,23 @@
                             cListGroupItem
                             *ngFor="let contact of contacts; let i = index"
                             (click)="setActiveContact(contact, i)"
+                            class="d-flex align-items-center"
                     >
-                        {{ contact.fn }}
+                        <c-avatar
+                                *ngIf="contact.photoBackgroundUrl; else noAvatar"
+                                size="l"
+                                class="contact-avatar mb-0"
+                                style="background-image: {{ contact.photoBackgroundUrl }};"
+                        ></c-avatar>
+                        <ng-template #noAvatar>
+                            <c-avatar
+                                    size="l"
+                                    class="contact_avatar"
+                                    color="secondary"
+                            >{{ contact.initials }}</c-avatar
+                            >
+                        </ng-template>
+                        <span class="ms-2">{{ contact.fn }}</span>
                     </button>
                 </div>
             </c-col>
