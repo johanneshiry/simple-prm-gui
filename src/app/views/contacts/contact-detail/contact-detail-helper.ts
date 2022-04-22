@@ -1,6 +1,6 @@
 import { VCard4 } from "vcard4-ts/src/vcard4Types";
 import { ApiContact } from "../../../models/api/api-contact.model";
-import { parseVCards } from "vcard4-ts";
+import { parseVCards, SingleVCardProperty } from "vcard4-ts";
 import { Contact } from "../../../models/contact.model";
 
 export class ContactDetailHelper {
@@ -79,5 +79,84 @@ export class ContactDetailHelper {
       /\S*/g,
       (word) => `${word.slice(0, 1)}${word.slice(1).toLowerCase()}`
     );
+  }
+
+  protected eMailType(email: SingleVCardProperty<string>) {
+    let eMailType = email.parameters?.TYPE?.filter(
+      (types) => !types.includes("INTERNET")
+    )[0];
+    if (eMailType != undefined) {
+      return eMailType;
+    }
+    return "INTERNET";
+  }
+
+  protected getPhones(vCard: VCard4) {
+    // filter fax
+    let phones = vCard.TEL?.filter((tel) => this.filterPhones(tel));
+
+    // zip unknown with X_ABLABEL
+    // order normally matches
+    let customLabelPhones: { type: string; number: string }[] | undefined =
+      this.zip(
+        phones?.filter((phone) => this.phoneType(phone) == "Unknown"),
+        vCard.x?.["X_ABLABEL"]
+      )?.map(([phoneNumber, label]) => {
+        return {
+          type: label.value,
+          number: phoneNumber.value,
+        };
+      });
+
+    let defaultLabelPhones: { type: string; number: string }[] | undefined =
+      phones
+        ?.filter((phone) => this.phoneType(phone) != "Unknown")
+        .map((phone) => {
+          let lowerCaseWord = this.wordToLowerCaseExceptFirstChar(
+            this.phoneType(phone)
+          );
+          if (lowerCaseWord != undefined) {
+            return {
+              type: lowerCaseWord,
+              number: phone.value,
+            };
+          } else {
+            return {
+              type: this.phoneType(phone),
+              number: phone.value,
+            };
+          }
+        });
+    return [...(defaultLabelPhones || []), ...(customLabelPhones || [])];
+  }
+
+  protected zip(
+    a: SingleVCardProperty<string>[] | undefined,
+    b: SingleVCardProperty<string>[] | undefined
+  ) {
+    if (a != undefined && b != undefined) {
+      return a.map(function (e, i) {
+        return [e, b[i]];
+      });
+    } else {
+      return undefined;
+    }
+  }
+
+  protected phoneType(phone: SingleVCardProperty<string>): string {
+    let phoneType = phone.parameters?.TYPE?.[0];
+    if (phoneType != undefined) {
+      return phoneType;
+    }
+    return "Unknown";
+  }
+
+  protected filterPhones(tel: SingleVCardProperty<string>) {
+    let types = tel.parameters?.TYPE;
+    if (types != undefined) {
+      return !types.includes("FAX");
+    } else {
+      return true;
+    }
   }
 }
