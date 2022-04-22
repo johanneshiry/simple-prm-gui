@@ -1,8 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { Contact } from "../../../models/contact.model";
-import { ContactService } from "../../../services/contact.service";
+import { ContactService } from "../../../services/api/contact.service";
 import { ApiContact } from "../../../models/api/api-contact.model";
-import { ActivatedRoute, NavigationStart, Router } from "@angular/router";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-contacts",

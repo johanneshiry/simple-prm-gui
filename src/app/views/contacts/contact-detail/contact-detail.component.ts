@@ -2,11 +2,11 @@ import { Component, Input, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { Contact } from "../../../models/contact.model";
 import { DummyContactComponent } from "./DummyContact.component";
-import { ReminderService } from "../../../services/reminder.service";
+import { ReminderService } from "../../../services/api/reminder.service";
 import { Reminder } from "../../../models/reminder.model";
 import { ApiContact } from "../../../models/api/api-contact.model";
 import { ApiReminder } from "../../../models/api/reminder.model";
-import { ContactService } from "../../../services/contact.service";
+import { ContactService } from "../../../services/api/contact.service";
 
 @Component({
   selector: "app-contact-detail",
@@ -22,8 +22,7 @@ export class ContactDetailComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private reminderService: ReminderService,
-    private contactService: ContactService
+    private reminderService: ReminderService
   ) {
     const state = this.router.getCurrentNavigation()?.extras.state as {
       contact: Contact;
