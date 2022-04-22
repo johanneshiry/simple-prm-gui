@@ -1,4 +1,4 @@
-import { parseVCards } from "vcard4-ts";
+import { NonEmptyArray, parseVCards, SingleVCardProperty } from "vcard4-ts";
 import { VCard4 } from "vcard4-ts/src/vcard4Types";
 import { ApiContact } from "./api/api-contact.model";
 import { ContactDetailHelper } from "../views/contacts/contact-detail/contact-detail-helper";
@@ -51,5 +51,93 @@ export class Contact extends ContactDetailHelper {
         location: adr.value.locality?.[0],
       };
     });
+  }
+
+  get emails() {
+    return this._vCard.EMAIL?.map((email) => {
+      return {
+        type: this.wordToLowerCaseExceptFirstChar(this.eMailType(email)),
+        value: email.value,
+      };
+    });
+  }
+
+  private eMailType(email: SingleVCardProperty<string>) {
+    let eMailType = email.parameters?.TYPE?.filter(
+      (types) => !types.includes("INTERNET")
+    )[0];
+    if (eMailType != undefined) {
+      return eMailType;
+    }
+    return "INTERNET";
+  }
+
+  get phones() {
+    // filter fax
+    let phones = this._vCard.TEL?.filter((tel) => this.filterPhones(tel));
+
+    // zip unknown with X_ABLABEL
+    // order normally matches
+    let customLabelPhones: { type: string; number: string }[] | undefined =
+      this.zip(
+        phones?.filter((phone) => this.phoneType(phone) == "Unknown"),
+        this._vCard.x?.["X_ABLABEL"]
+      )?.map(([phoneNumber, label]) => {
+        return {
+          type: label.value,
+          number: phoneNumber.value,
+        };
+      });
+
+    let defaultLabelPhones: { type: string; number: string }[] | undefined =
+      phones
+        ?.filter((phone) => this.phoneType(phone) != "Unknown")
+        .map((phone) => {
+          let lowerCaseWord = this.wordToLowerCaseExceptFirstChar(
+            this.phoneType(phone)
+          );
+          if (lowerCaseWord != undefined) {
+            return {
+              type: lowerCaseWord,
+              number: phone.value,
+            };
+          } else {
+            return {
+              type: this.phoneType(phone),
+              number: phone.value,
+            };
+          }
+        });
+    return [...(defaultLabelPhones || []), ...(customLabelPhones || [])];
+  }
+
+  private zip(
+    a: SingleVCardProperty<string>[] | undefined,
+    b: SingleVCardProperty<string>[] | undefined
+  ) {
+    if (a != undefined && b != undefined) {
+      return a.map(function (e, i) {
+        return [e, b[i]];
+      });
+    } else {
+      return undefined;
+    }
+  }
+
+  private phoneType(phone: SingleVCardProperty<string>): string {
+    let phoneType = phone.parameters?.TYPE?.[0];
+    if (phoneType != undefined) {
+      return phoneType;
+    }
+    return "Unknown";
+  }
+
+  private filterPhones(tel: SingleVCardProperty<string>) {
+    let types = tel.parameters?.TYPE;
+    if (types != undefined) {
+      return !types.includes("FAX");
+    } else {
+      return true;
+    }
   }
 }

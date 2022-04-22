@@ -4,6 +4,7 @@ import { CommonModule } from "@angular/common";
 import { ContactsRoutingModule } from "./contacts-routing.module";
 import { ContactsListComponent } from "./contacts-list/contacts-list.component";
 import {
+  AccordionModule,
   AvatarModule,
   ButtonModule,
   CardModule,
@@ -11,7 +12,9 @@ import {
   ListGroupModule,
   ModalModule,
   PaginationModule,
+  SharedModule,
   SpinnerModule,
+  TableModule,
 } from "@coreui/angular";
 import { ContactDetailComponent } from "./contact-detail/contact-detail.component";
 
@@ -28,6 +31,9 @@ import { ContactDetailComponent } from "./contact-detail/contact-detail.componen
     CardModule,
     AvatarModule,
     SpinnerModule,
+    TableModule,
+    AccordionModule,
+    SharedModule,
   ],
 })
 export class ContactsModule {}

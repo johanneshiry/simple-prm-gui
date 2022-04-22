@@ -1,35 +1,44 @@
 <!--<c-header class="mb-4 d-print-none" position="sticky">-->
 <ng-container>
-    <c-container [fluid]="true">
-        <c-header-nav class="d-none d-md-flex ms-auto">
-            <c-nav-item *ngFor="let navItem of navItems">
-                <a cNavLink [routerLink]="navItem.url">
-                    <div class="d-flex align-items-center">
-                        <svg cIcon="" name="{{navItem.iconComponent.name}}" size="lg" class="bottom-0"></svg>
-                        <span class="ms-2 me-2">{{navItem.name}}</span>
-                    </div>
-                </a>
-            </c-nav-item>
-        </c-header-nav>
-        <c-header-nav class="ms-auto d-md-none">
-
-            <c-dropdown alignment="end">
-                <a cHeaderToggler cDropdownToggle cNavLink [caret]="false">
-                    <svg cIcon="" name="cilMenu" size="xl"></svg>
-                </a>
-                <ul cDropdownMenu>
-                    <li *ngFor="let navItem of navItems" class="float-end">
-                        <a cNavLink [routerLink]="navItem.url">
-                            <svg cIcon="" name="{{navItem.iconComponent.name}}" size="lg" class="me-2"></svg>
-                            <span class="me-2">{{navItem.name}}</span>
-                        </a>
-                    </li>
-                </ul>
-            </c-dropdown>
-        </c-header-nav>
-    </c-container>
-    <c-header-divider></c-header-divider>
-    <c-container [fluid]="true">
-        <c-breadcrumb-router class="ms-2"></c-breadcrumb-router>
-    </c-container>
+  <c-container [fluid]="true">
+    <c-header-nav class="d-none d-md-flex ms-auto">
+      <c-nav-item *ngFor="let navItem of navItems">
+        <a cNavLink [routerLink]="navItem.url">
+          <div class="d-flex align-items-center">
+            <svg
+              cIcon=""
+              name="{{ navItem.iconComponent.name }}"
+              size="lg"
+              class="bottom-0"
+            ></svg>
+            <span class="ms-2 me-2">{{ navItem.name }}</span>
+          </div>
+        </a>
+      </c-nav-item>
+    </c-header-nav>
+    <c-header-nav class="ms-auto d-md-none">
+      <c-dropdown alignment="end">
+        <a cHeaderToggler cDropdownToggle cNavLink [caret]="false">
+          <svg cIcon="" name="cilMenu" size="xl"></svg>
+        </a>
+        <ul cDropdownMenu>
+          <li *ngFor="let navItem of navItems" class="float-end">
+            <a cNavLink [routerLink]="navItem.url">
+              <svg
+                cIcon=""
+                name="{{ navItem.iconComponent.name }}"
+                size="lg"
+                class="me-2"
+              ></svg>
+              <span class="me-2">{{ navItem.name }}</span>
+            </a>
+          </li>
+        </ul>
+      </c-dropdown>
+    </c-header-nav>
+  </c-container>
+  <c-header-divider></c-header-divider>
+  <c-container [fluid]="true">
+    <c-breadcrumb-router class="ms-2"></c-breadcrumb-router>
+  </c-container>
 </ng-container>
