@@ -18,6 +18,7 @@ export class ContactsListComponent implements OnInit {
   readonly limit = 20;
   readonly defaultOffset = 0;
   currentOffset = 0;
+  loading = false;
 
   // details modal view
   // detailsVisible = false;
@@ -33,6 +34,7 @@ export class ContactsListComponent implements OnInit {
   }
 
   retrieveContacts(offset: number = this.defaultOffset): void {
+    this.loading = true;
     if (offset >= 0) {
       // offset must be at least zero
       this.contactService.get(this.limit, offset).subscribe({
@@ -43,6 +45,7 @@ export class ContactsListComponent implements OnInit {
               Contact.fromApiContact(apiContact)
             );
             this.currentOffset = offset;
+            this.loading = false;
           }
         },
         error: (e) => console.error(e),

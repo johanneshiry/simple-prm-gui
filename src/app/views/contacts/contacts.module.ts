@@ -11,6 +11,7 @@ import {
   ListGroupModule,
   ModalModule,
   PaginationModule,
+  SpinnerModule,
 } from "@coreui/angular";
 import { ContactDetailComponent } from "./contact-detail/contact-detail.component";
 
@@ -26,6 +27,7 @@ import { ContactDetailComponent } from "./contact-detail/contact-detail.componen
     GridModule,
     CardModule,
     AvatarModule,
+    SpinnerModule,
   ],
 })
 export class ContactsModule {}
