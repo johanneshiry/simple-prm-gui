@@ -1,7 +1,7 @@
 <c-container>
   <div *ngIf="contact; else noContactSelected">
     <c-row class="align-items-start">
-      <c-col xs="5" xxl="2">
+      <c-col xs="5" md="4" lg="3" xl="2">
         <div class="p-3 ps-1">
           <c-avatar
             *ngIf="contact.photoBackgroundUrl; else noAvatar"
@@ -19,7 +19,7 @@
           </ng-template>
         </div>
       </c-col>
-      <c-col xs="7" xxl="10">
+      <c-col xs="7" md="8" lg="9" xl="10">
         <c-row class="align-items-start">
           <c-col class="p-1">
             <div>
