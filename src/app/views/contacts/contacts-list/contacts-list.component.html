@@ -1,78 +1,83 @@
 <!--<div class="list row">-->
-<h4>Contacts</h4>
 <div
-  *ngIf="loading || !contacts || contacts.length <= 0; else contactsAvailable"
+        *ngIf="loading || !contacts || contacts.length <= 0; else contactsAvailable"
 >
-  <c-container>
-    <c-row class="align-items-center justify-content-center">
-      <c-col xs="12" class="align-self-center text-center p-5">
-        <c-col>
-          <c-spinner></c-spinner>
-        </c-col>
-        <c-col> Loading contacts ...</c-col>
-      </c-col>
-    </c-row>
-  </c-container>
+    <c-container>
+        <h4>Contacts</h4>
+        <c-row class="align-items-center justify-content-center">
+            <c-col xs="12" class="align-self-center text-center p-5">
+                <c-col>
+                    <c-spinner></c-spinner>
+                </c-col>
+                <c-col> Loading contacts ...</c-col>
+            </c-col>
+        </c-row>
+    </c-container>
 </div>
 <ng-template #contactsAvailable>
-  <div cListGroup flush>
-    <button
-      cListGroupItem
-      *ngFor="let contact of contacts; let i = index"
-      (click)="setActiveContact(contact, i)"
-    >
-      {{ contact.fn }}
-    </button>
-  </div>
-  <!--    <div class="col-md-6">-->
-  <!--        <app-contact-details-->
-  <!--                [viewMode]="true"-->
-  <!--                [currentContact]="currentContact"-->
-  <!--        ></app-contact-details>-->
-  <!--    </div>-->
-  <c-pagination aria-label="Page navigation example">
-    <c-page-item>
-      <a cPageLink routerLink="./" (click)="fetchPrevious()">Previous</a>
-    </c-page-item>
-    <!--        <c-page-item>-->
-    <!--            <a cPageLink routerLink="./">1</a>-->
-    <!--        </c-page-item>-->
-    <!--        <c-page-item>-->
-    <!--            <a cPageLink routerLink="./">2</a>-->
-    <!--        </c-page-item>-->
-    <!--        <c-page-item>-->
-    <!--            <a cPageLink routerLink="./">3</a>-->
-    <!--        </c-page-item>-->
-    <c-page-item>
-      <a cPageLink routerLink="./" (click)="fetchNext()">Next</a>
-    </c-page-item>
-  </c-pagination>
+    <c-container>
+        <h4>Contacts</h4>
+        <c-row>
+            <c-col xs="12">
+                <div cListGroup>
+                    <button
+                            cListGroupItem
+                            *ngFor="let contact of contacts; let i = index"
+                            (click)="setActiveContact(contact, i)"
+                    >
+                        {{ contact.fn }}
+                    </button>
+                </div>
+            </c-col>
+        </c-row>
+        <c-row class="mt-2">
+            <c-col xs="12">
+                <c-pagination aria-label="Page navigation example" class="float-end">
+                    <c-page-item>
+                        <a cPageLink routerLink="./" (click)="fetchPrevious()">Previous</a>
+                    </c-page-item>
+                    <!--        <c-page-item>-->
+                    <!--            <a cPageLink routerLink="./">1</a>-->
+                    <!--        </c-page-item>-->
+                    <!--        <c-page-item>-->
+                    <!--            <a cPageLink routerLink="./">2</a>-->
+                    <!--        </c-page-item>-->
+                    <!--        <c-page-item>-->
+                    <!--            <a cPageLink routerLink="./">3</a>-->
+                    <!--        </c-page-item>-->
+                    <c-page-item>
+                        <a cPageLink routerLink="./" (click)="fetchNext()">Next</a>
+                    </c-page-item>
+                </c-pagination>
+            </c-col>
+        </c-row>
+    </c-container>
 
-  <!-- Contact details modal view -->
-  <!--<div *ngIf="currentContact">-->
-  <!--    <c-modal id="contactDetails" [visible]="detailsVisible" (visibleChange)="handleDetailsVisibleChange($event)">-->
-  <!--&lt;!&ndash;        <div style="margin-top:-10px; margin-left: auto; margin-right: auto; width: 100px;" ><img class="avatar-img" [src]="currentContact.photoSrc" alt="contact_picture"></div>&ndash;&gt;-->
-  <!--        <c-modal-header>-->
-  <!--            <h5 cModalTitle>{{ currentContact.fn }}</h5>-->
-  <!--            <button (click)="toggleContactDetails()" cButtonClose></button>-->
-  <!--        </c-modal-header>-->
-  <!--        <c-modal-body>-->
-  <!--            <div>-->
-  <!--                <label><strong>Uid:</strong></label> {{ currentContact.uid }}-->
-  <!--            </div>-->
-  <!--            <div>-->
-  <!--                <label><strong>Name:</strong></label> {{ currentContact.fn }}-->
-  <!--            </div>-->
-  <!--            <div>-->
-  <!--                <label><strong>Photo:</strong></label> <img class="avatar-img" [src]="currentContact.photoSrc" alt="contact_picture">-->
-  <!--            </div>-->
-  <!--        </c-modal-body>-->
-  <!--        <c-modal-footer>-->
-  <!--            <button (click)="toggleContactDetails()" cButton color="secondary">-->
-  <!--                Close-->
-  <!--            </button>-->
-  <!--            <button cButton color="primary">Details</button>-->
-  <!--        </c-modal-footer>-->
-  <!--    </c-modal>-->
-  <!--</div>-->
+    <!-- Contact details modal view -->
+    <!--<div *ngIf="currentContact">-->
+    <!--    <c-modal id="contactDetails" [visible]="detailsVisible" (visibleChange)="handleDetailsVisibleChange($event)">-->
+    <!--&lt;!&ndash;        <div style="margin-top:-10px; margin-left: auto; margin-right: auto; width: 100px;" ><img class="avatar-img" [src]="currentContact.photoSrc" alt="contact_picture"></div>&ndash;&gt;-->
+    <!--        <c-modal-header>-->
+    <!--            <h5 cModalTitle>{{ currentContact.fn }}</h5>-->
+    <!--            <button (click)="toggleContactDetails()" cButtonClose></button>-->
+    <!--        </c-modal-header>-->
+    <!--        <c-modal-body>-->
+    <!--            <div>-->
+    <!--                <label><strong>Uid:</strong></label> {{ currentContact.uid }}-->
+    <!--            </div>-->
+    <!--            <div>-->
+    <!--                <label><strong>Name:</strong></label> {{ currentContact.fn }}-->
+    <!--            </div>-->
+    <!--            <div>-->
+    <!--                <label><strong>Photo:</strong></label> <img class="avatar-img" [src]="currentContact.photoSrc" alt="contact_picture">-->
+    <!--            </div>-->
+    <!--        </c-modal-body>-->
+    <!--        <c-modal-footer>-->
+    <!--            <button (click)="toggleContactDetails()" cButton color="secondary">-->
+    <!--                Close-->
+    <!--            </button>-->
+    <!--            <button cButton color="primary">Details</button>-->
+    <!--        </c-modal-footer>-->
+    <!--    </c-modal>-->
+    <!--</div>-->
 </ng-template>
