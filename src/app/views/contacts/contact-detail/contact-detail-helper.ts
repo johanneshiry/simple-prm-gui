@@ -91,7 +91,7 @@ export class ContactDetailHelper {
     return "INTERNET";
   }
 
-  protected getPhones(vCard: VCard4) {
+  protected getPhones(vCard: VCard4): { type: string; number: string }[] {
     // filter fax
     let phones = vCard.TEL?.filter((tel) => this.filterPhones(tel));
 

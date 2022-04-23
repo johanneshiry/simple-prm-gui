@@ -63,6 +63,8 @@ export class Contact extends ContactDetailHelper {
   }
 
   get phones() {
-    return this.getPhones(this._vCard);
+    let phones = this.getPhones(this._vCard);
+    if (phones.length > 0) return phones;
+    return undefined;
   }
 }
