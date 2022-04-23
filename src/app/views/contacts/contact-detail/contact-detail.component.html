@@ -1,7 +1,7 @@
 <c-container>
   <div *ngIf="contact; else noContactSelected">
     <c-row class="align-items-start">
-      <c-col xs="5" md="4" lg="3" xl="2">
+      <c-col [xs]="5" md="4" lg="3" xl="2">
         <div class="p-3 ps-1">
           <c-avatar
             *ngIf="contact.photoBackgroundUrl; else noAvatar"
@@ -19,7 +19,7 @@
           </ng-template>
         </div>
       </c-col>
-      <c-col xs="7" md="8" lg="9" xl="10">
+      <c-col [xs]="7" md="8" lg="9" xl="10">
         <c-row class="align-items-start">
           <c-col class="p-1">
             <div>
@@ -35,7 +35,7 @@
       </c-col>
     </c-row>
     <c-row>
-      <c-col xs="12" lg="4">
+      <c-col [xs]="12" lg="4">
         <c-row>
           <c-col>
             <c-card class="mb-4">
@@ -127,7 +127,7 @@
           </c-col>
         </c-row>
       </c-col>
-      <c-col xs="12" lg="8">
+      <c-col [xs]="12" lg="8">
         <!-- Elements on the right -->
         <c-card class="mb-4">
           <c-card-header>
@@ -138,26 +138,44 @@
               <div cListGroup flush>
                 <div cListGroupItem>
                   <c-row class="align-items-start">
-                    <c-col xs="4"><h6>Contact Id</h6></c-col>
-                    <c-col xs="4"><h6>Reminder Interval</h6></c-col>
-                    <c-col xs="4"><h6>Reminder last sent</h6></c-col>
+                    <c-col [xs]="3"><h6>Created</h6></c-col>
+                    <c-col [xs]="3"><h6>Interval</h6></c-col>
+                    <c-col [xs]="2"><h6>Type</h6></c-col>
+                    <c-col [xs]="3"><h6>Last Sent</h6></c-col>
+                    <c-col [xs]="1"><h6></h6></c-col>
                   </c-row>
                 </div>
-                <button cListGroupItem *ngFor="let reminder of reminders">
-                  <c-row>
-                    <c-col xs="4">{{ reminder.contactId }}</c-col>
-                    <c-col xs="4">{{ reminder.contactInterval }}</c-col>
-                    <c-col xs="4">{{ reminder.lastContacted }}</c-col>
+                <button
+                  (click)="displayReminderDetails(reminder, 'Edit')"
+                  cListGroupItem
+                  *ngFor="let reminder of reminders"
+                >
+                  <c-row class="align-items-center">
+                    <c-col [xs]="3">{{ reminder.contactId }}</c-col>
+                    <c-col [xs]="3">{{ reminder.contactInterval }}</c-col>
+                    <c-col [xs]="2">{{ reminder.lastContacted }}</c-col>
+                    <c-col [xs]="3">{{ reminder.lastContacted }}</c-col>
+                    <c-col [xs]="1">
+                      <a (click)="maybeDelete(reminder)" class="trash-link">
+                        <svg
+                          cIcon=""
+                          name="cilTrash"
+                          size="xl"
+                          class="colo"
+                        ></svg>
+                      </a>
+                    </c-col>
                   </c-row>
                 </button>
               </div>
             </div>
-            <ng-template #noReminder>
-              <div>
-                <p>No reminders set!</p>
-              </div>
-            </ng-template>
-            <button cButton class="mt-2">Create Reminder</button>
+            <button
+              cButton
+              class="mt-2"
+              (click)="displayReminderDetails(createReminder(), 'Create')"
+            >
+              Create Reminder
+            </button>
           </c-card-body>
         </c-card>
       </c-col>
@@ -168,6 +186,67 @@
   </ng-template>
 </c-container>
 
+<!--Reminder details modal view-->
+<c-modal
+  id="reminderDetails"
+  [visible]="showReminderDetails"
+  (visibleChange)="handleReminderDetailsChange($event)"
+>
+  <c-modal-header>
+    <h5 cModalTitle>{{ reminderDetailsTitle }}</h5>
+    <button (click)="handleReminderDetailsChange(false)" cButtonClose></button>
+  </c-modal-header>
+  <c-modal-body>
+    <div>
+      <label><strong>Uid:</strong></label> {{ selectedReminder?.lastContacted }}
+    </div>
+  </c-modal-body>
+  <c-modal-footer>
+    <button
+      (click)="handleReminderDetailsChange(false)"
+      cButton
+      color="secondary"
+    >
+      Close
+    </button>
+    <button cButton color="primary">Save Changes</button>
+  </c-modal-footer>
+</c-modal>
+
+<!--Delete reminder modal view-->
+<c-modal
+  id="deleteReminder"
+  [visible]="showReminderDelete"
+  (visibleChange)="handleDeleteReminderChange($event)"
+>
+  <c-modal-header>
+    <h5 cModalTitle>Delete Reminder</h5>
+    <button (click)="handleDeleteReminderChange(false)" cButtonClose></button>
+  </c-modal-header>
+  <c-modal-body>
+    <div>
+      <label><strong>Uid:</strong></label> {{ selectedReminder?.lastContacted }}
+    </div>
+  </c-modal-body>
+  <c-modal-footer>
+    <button
+      (click)="handleDeleteReminderChange(false)"
+      cButton
+      color="secondary"
+    >
+      Close
+    </button>
+    <button cButton color="danger">Delete Reminder</button>
+  </c-modal-footer>
+</c-modal>
+
+<!--Missing data templates -->
 <ng-template #noData>
   <p>No data available!</p>
+</ng-template>
+
+<ng-template #noReminder>
+  <div>
+    <p>No reminders set!</p>
+  </div>
 </ng-template>

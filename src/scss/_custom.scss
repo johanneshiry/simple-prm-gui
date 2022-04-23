@@ -13,3 +13,13 @@
 .table-hover-cursor {
   cursor: pointer;
 }
+
+.trash-link {
+  font-weight: 700;
+  color: var(--cui-secondary);
+}
+
+.trash-link:hover,
+.trash-link:focus {
+  color: var(--cui-red);
+}

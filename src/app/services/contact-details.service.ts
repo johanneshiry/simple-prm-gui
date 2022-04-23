@@ -69,11 +69,8 @@ export class ContactDetailsService {
   }
 
   get contact() {
-    let storedContactVCard = this.read()?.vCard;
-    if (storedContactVCard != undefined) {
-      return new Contact(storedContactVCard);
-    }
-    return undefined;
+    let storedContactVCard = this.read()!.vCard;
+    return new Contact(storedContactVCard);
   }
 
   clean() {

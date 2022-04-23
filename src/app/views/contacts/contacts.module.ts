@@ -17,6 +17,7 @@ import {
   TableModule,
 } from "@coreui/angular";
 import { ContactDetailComponent } from "./contact-detail/contact-detail.component";
+import { IconModule } from "@coreui/icons-angular";
 
 @NgModule({
   declarations: [ContactsListComponent, ContactDetailComponent],
@@ -34,6 +35,7 @@ import { ContactDetailComponent } from "./contact-detail/contact-detail.componen
     TableModule,
     AccordionModule,
     SharedModule,
+    IconModule,
   ],
 })
 export class ContactsModule {}
