@@ -50,6 +50,7 @@ import {
 
 import { IconModule, IconSetService } from "@coreui/icons-angular";
 import { HttpClientModule } from "@angular/common/http";
+import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
@@ -91,6 +92,7 @@ const APP_CONTAINERS = [
     ListGroupModule,
     CardModule,
     HttpClientModule,
+    NgbModule,
   ],
   providers: [
     {
