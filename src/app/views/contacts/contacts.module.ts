@@ -17,6 +17,7 @@ import {
   SharedModule,
   SpinnerModule,
   TableModule,
+  ToastModule,
 } from "@coreui/angular";
 import { ContactDetailComponent } from "./contact-detail/contact-detail.component";
 import { IconModule } from "@coreui/icons-angular";
@@ -61,6 +62,7 @@ import { AddressesComponent } from "./contact-detail/addresses/addresses.compone
     NgbDatepickerModule,
     DropdownModule,
     FormModule,
+    ToastModule,
   ],
 })
 export class ContactsModule {}

@@ -20,6 +20,11 @@
     >
       Close
     </button>
-    <button cButton color="danger">Delete Reminder</button>
+    <button cButton color="danger" (click)="deleteReminder()">
+      Delete Reminder
+    </button>
   </c-modal-footer>
 </c-modal>
+
+<!--Query result toast-->
+<c-toaster class="p-3" position="fixed"></c-toaster>

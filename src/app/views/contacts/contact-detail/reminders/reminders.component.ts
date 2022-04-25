@@ -28,13 +28,14 @@ export class RemindersComponent implements OnInit {
   constructor(private reminderApiService: ReminderApiService) {}
 
   ngOnInit(): void {
-    this.queryReminders();
+    this.subscribeReminderChanges();
   }
 
-  private queryReminders() {
-    // query reminders
-    this.reminderApiService.get(this.contactUid).subscribe({
+  private subscribeReminderChanges() {
+    // subscribe
+    this.reminderApiService.subscribe({
       next: (maybeReminders) => {
+        this.reminders = undefined;
         if (maybeReminders) {
           this.reminders = maybeReminders;
         } else {
@@ -47,11 +48,14 @@ export class RemindersComponent implements OnInit {
           "Error while fetching reminders: " + JSON.stringify(err);
       },
     });
+    // query
+    this.reminderApiService.get(this.contactUid);
   }
 
   // create reminder
   createReminder(): Reminder {
     return new Reminder({
+      uuid: "", // todo
       contactId: this.contactUid,
       lastContacted: ZonedDateTime.now(),
       contactInterval: Duration.ofDays(1),
@@ -59,7 +63,7 @@ export class RemindersComponent implements OnInit {
   }
 
   private _toggleSelectedReminder(reminder: Reminder) {
-    this.selectedReminder = this.selectedReminder ? undefined : reminder;
+    this.selectedReminder = reminder;
   }
 
   toggleReminderDetails(reminder: Reminder, editOrCreate: string) {

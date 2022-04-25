@@ -1,5 +1,8 @@
-import { Component, Input, OnInit } from "@angular/core";
+import { Component, Input, OnInit, ViewChild } from "@angular/core";
 import { Reminder } from "../../../../../models/reminder.model";
+import { ReminderApiService } from "../../../../../services/api/reminder-api.service";
+import { ToasterComponent } from "@coreui/angular";
+import { ToastNotificationUtil } from "../../../../common/toast-notification/toast-notification.util";
 
 @Component({
   selector: "app-delete-reminder[selectedReminder]",
@@ -12,28 +15,46 @@ export class DeleteReminderComponent implements OnInit {
 
   show: boolean = false;
 
-  constructor() {}
+  @ViewChild(ToasterComponent) queryResultToast!: ToasterComponent;
+
+  constructor(private reminderApiService: ReminderApiService) {}
 
   ngOnInit(): void {}
 
   handleDeleteReminderChange(visible: boolean) {
     this.show = visible;
-    this.selectedReminder = visible ? this.selectedReminder : undefined;
   }
 
-  // // delete reminder
-  // maybeDelete(reminder: Reminder): void {
-  //   this.showReminderDelete = true;
-  //   this.selectedReminder = reminder;
-  // }
-  //
-  // handleDeleteReminderChange(visible: boolean) {
-  //   this.showReminderDelete = visible;
-  //   this.selectedReminder = visible ? this.selectedReminder : undefined;
-  // }
-  //
-  // deleteReminder(): void {
-  //   // todo actual deletion process of selected reminder
-  //   // delete + requery
-  // }
+  deleteReminder(): void {
+    if (this.selectedReminder) {
+      this.reminderApiService.delete(this.selectedReminder.uuid).subscribe({
+        next: () => {
+          ToastNotificationUtil.success(
+            "Deletion successful",
+            "Successfully deleted reminder!",
+            this.queryResultToast
+          );
+        },
+        error: (err) => {
+          ToastNotificationUtil.failure(
+            "Deletion failed",
+            "Cannot delete reminder! Error: " + JSON.stringify(err),
+            this.queryResultToast
+          );
+        },
+      });
+    } else {
+      ToastNotificationUtil.failure(
+        "Deletion failed",
+        "Cannot delete reminder, as no reminder is currently selected!",
+        this.queryResultToast
+      );
+    }
+
+    if (this.selectedReminder) {
+      this.reminderApiService.get(this.selectedReminder.contactId);
+    }
+
+    this.handleDeleteReminderChange(false);
+  }
 }

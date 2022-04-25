@@ -29,7 +29,6 @@ export class ReminderDetailComponent
 
   handleReminderDetailsChange(visible: boolean) {
     this.show = visible;
-    this.selectedReminder = visible ? this.selectedReminder : undefined;
     this.selectedReminderIntervalUnit = visible
       ? this.selectedReminderIntervalUnit
       : this.defaultReminderIntervalUnit;
