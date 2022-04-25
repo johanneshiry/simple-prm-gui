@@ -28,6 +28,8 @@ import { FormsModule } from "@angular/forms";
 import { ReminderDetailComponent } from "./contact-detail/reminders/reminder-detail/reminder-detail.component";
 import { RemindersComponent } from "./contact-detail/reminders/reminders.component";
 import { DeleteReminderComponent } from "./contact-detail/reminders/delete-reminder/delete-reminder.component";
+import { ContactInformationComponent } from "./contact-detail/contact-information/contact-information.component";
+import { AddressesComponent } from "./contact-detail/addresses/addresses.component";
 
 @NgModule({
   declarations: [
@@ -36,6 +38,8 @@ import { DeleteReminderComponent } from "./contact-detail/reminders/delete-remin
     ReminderDetailComponent,
     RemindersComponent,
     DeleteReminderComponent,
+    ContactInformationComponent,
+    AddressesComponent,
   ],
   imports: [
     CommonModule,

@@ -1,0 +1,48 @@
+<c-accordion [flush]="true" [alwaysOpen]="true">
+  <c-accordion-item #item0="cAccordionItem" [visible]="false">
+    <ng-template cTemplateId="accordionHeaderTemplate">
+      <button
+        (click)="item0.toggleItem()"
+        [collapsed]="!item0.visible"
+        cAccordionButton
+      >
+        <strong>E-Mail Addresses</strong>
+      </button>
+    </ng-template>
+    <ng-template cTemplateId="accordionBodyTemplate">
+      <div class="accordion-body">
+        <div cListGroup flush *ngIf="emails; else noData">
+          <button cListGroupItem *ngFor="let email of emails">
+            <h6>{{ email.type }}</h6>
+            {{ email.value }}
+          </button>
+        </div>
+      </div>
+    </ng-template>
+  </c-accordion-item>
+  <c-accordion-item #item1="cAccordionItem" [visible]="false">
+    <ng-template cTemplateId="accordionHeaderTemplate">
+      <button
+        (click)="item1.toggleItem()"
+        [collapsed]="!item1.visible"
+        cAccordionButton
+      >
+        <strong>Phones</strong>
+      </button>
+    </ng-template>
+    <ng-template cTemplateId="accordionBodyTemplate">
+      <div class="accordion-body">
+        <div cListGroup flush *ngIf="phones; else noData">
+          <button cListGroupItem *ngFor="let phone of phones">
+            <h6>{{ phone.type }}</h6>
+            {{ phone.number }}
+          </button>
+        </div>
+      </div>
+    </ng-template>
+  </c-accordion-item>
+</c-accordion>
+
+<ng-template #noData>
+  <p>No data available!</p>
+</ng-template>
