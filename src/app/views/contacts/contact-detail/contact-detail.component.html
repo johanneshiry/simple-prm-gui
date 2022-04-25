@@ -58,16 +58,7 @@
                 <strong>Addresses</strong>
               </c-card-header>
               <c-card-body>
-                <div cListGroup flush *ngIf="contact.addresses; else noData">
-                  <button
-                    cListGroupItem
-                    *ngFor="let address of contact.addresses"
-                  >
-                    <h6>{{ address.type }}</h6>
-                    {{ address.street }}<br />
-                    {{ address.postalCode }} {{ address.location }}
-                  </button>
-                </div>
+                <app-addresses [addresses]="contact.addresses"></app-addresses>
               </c-card-body>
             </c-card>
           </c-col>
