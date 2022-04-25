@@ -1,0 +1,13 @@
+<ng-container>
+    <c-toast-header>
+        <div class="d-flex align-items-center {{iconColorClass}}">
+            <span class="{{iconColorClass}} ps-0 pe-0">
+                <svg cIcon="" [name]="icon" size="l"></svg>
+                </span>
+            <span class="ms-2 me-2"><strong>{{title}}</strong></span>
+        </div>
+    </c-toast-header>
+    <c-toast-body class="text-white">
+        {{body}}
+    </c-toast-body>
+</ng-container>

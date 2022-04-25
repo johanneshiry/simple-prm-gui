@@ -90,6 +90,7 @@ import {
   cilUserFollow,
   cilUserUnfollow,
 } from "@coreui/icons";
+import { cilWarning } from "@coreui/icons/js/free/cil-warning";
 
 export const iconSubset = {
   cibCcAmex,
@@ -177,6 +178,7 @@ export const iconSubset = {
   cilTags,
   cilTask,
   cilTrash,
+  cilWarning,
   cilUnderline,
   cilUser,
   cilUserFemale,
