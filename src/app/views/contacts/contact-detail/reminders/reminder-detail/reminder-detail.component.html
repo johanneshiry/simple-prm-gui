@@ -9,21 +9,30 @@
   </c-modal-header>
   <c-modal-body>
     <c-container>
-      <form>
+      <form
+        (ngSubmit)="save()"
+        [gutter]="3"
+        [validated]="customStylesValidated"
+        novalidate
+        cForm
+        cRow
+        class="needs-validation"
+        id="reminder-form"
+      >
         <c-row class="align-items-center m-2">
           <c-col [xs]="4">Date</c-col>
           <c-col [xs]="8">
             <c-input-group class="has-validation">
               <input
-                #yearMonthDateInput
                 class="form-control"
                 placeholder="yyyy-mm-dd"
                 name="dp"
-                [(ngModel)]="model"
                 ngbDatepicker
                 #d="ngbDatepicker"
                 aria-describedby="inputGroupPrepend"
+                id="validationCustom02"
                 required
+                type="date"
               />
               <button
                 class="btn btn-outline-secondary calendar"
@@ -32,6 +41,9 @@
               >
                 <svg cIcon="" name="cil-calendar" size="auto"></svg>
               </button>
+              <c-form-feedback [valid]="false"
+                >Please provide a valid date!</c-form-feedback
+              >
             </c-input-group>
           </c-col>
         </c-row>
@@ -41,39 +53,44 @@
             <c-row>
               <c-col [xs]="4">
                 <input
-                  #intervalValueInput
                   cFormControl
                   type="number"
                   value="1"
                   min="1"
+                  id="validationCustom03"
+                  required
                 />
+                <c-form-feedback [valid]="false"
+                  >Please select a valid interval unit!</c-form-feedback
+                >
               </c-col>
               <c-col [xs]="8">
-                <c-dropdown variant="btn-group">
-                  <button
-                    #selectedReminderButton
-                    cButton
-                    cDropdownToggle
-                    color="secondary"
+                <select cSelect id="validationCustom04" required>
+                  <option
+                    [value]="
+                      selectedReminderIntervalUnit
+                        ? defaultReminderIntervalUnit
+                        : defaultReminderIntervalUnit
+                    "
+                    #selectedReminderOption
                   >
                     {{
                       selectedReminderIntervalUnit
                         ? defaultReminderIntervalUnit
                         : defaultReminderIntervalUnit
                     }}
-                  </button>
-                  <ul cDropdownMenu>
-                    <li>
-                      <button
-                        cDropdownItem
-                        *ngFor="let unit of reminderIntervalUnits"
-                        (click)="selectedReminderButton.textContent = unit"
-                      >
-                        {{ unit }}
-                      </button>
-                    </li>
-                  </ul>
-                </c-dropdown>
+                  </option>
+                  <option
+                    *ngFor="let unit of reminderIntervalUnits"
+                    (click)="selectedReminderOption.textContent = unit"
+                    [value]="unit"
+                  >
+                    {{ unit }}
+                  </option>
+                </select>
+                <c-form-feedback [valid]="false"
+                  >Please select a valid interval unit!</c-form-feedback
+                >
               </c-col>
             </c-row>
           </c-col>
@@ -91,15 +108,10 @@
     </button>
     <button
       cButton
+      form="reminder-form"
+      class="me-1"
       color="primary"
       type="submit"
-      (click)="
-        validateAndSaveReminder(
-          intervalValueInput.value,
-          selectedReminderButton.textContent,
-          yearMonthDateInput.value
-        )
-      "
     >
       Save
     </button>

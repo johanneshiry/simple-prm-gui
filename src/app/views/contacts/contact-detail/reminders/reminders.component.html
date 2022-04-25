@@ -11,14 +11,17 @@
 </div>
 
 <!--If we do not have reminders name it-->
-<div *ngIf="reminders && reminders.length <= 0; else displayReminders">
+<div *ngIf="reminders && reminders.length <= 0">
   <div>
     <p>{{ reminderQueryErrorMsg }}</p>
   </div>
+  <button (click)="toggleReminderDetails(createReminder(), 'Create')" cButton>
+    Create Reminder
+  </button>
 </div>
 
 <!--If we have reminders, display them-->
-<ng-template #displayReminders>
+<div *ngIf="reminders && reminders.length > 0">
   <c-row *ngIf="reminders && reminders.length > 0">
     <c-col>
       <div cListGroup flush>
@@ -61,7 +64,7 @@
       </button>
     </c-col>
   </c-row>
-</ng-template>
+</div>
 
 <!--Reminder Details modal view-->
 <app-reminder-detail

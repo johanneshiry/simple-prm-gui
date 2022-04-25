@@ -19,7 +19,7 @@ export class ReminderDetailComponent
 
   selectedReminderIntervalUnit?: string;
 
-  model?: NgbDateStruct;
+  customStylesValidated = false;
 
   constructor() {
     super();
@@ -32,6 +32,10 @@ export class ReminderDetailComponent
     this.selectedReminderIntervalUnit = visible
       ? this.selectedReminderIntervalUnit
       : this.defaultReminderIntervalUnit;
+  }
+
+  save() {
+    this.customStylesValidated = true;
   }
 
   validateAndSaveReminder(

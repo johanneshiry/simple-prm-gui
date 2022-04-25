@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { GlobalConstants } from "../../common/global-constants";
-import { Observable, Observer } from "rxjs";
+import { catchError, Observable, Observer, of, throwError } from "rxjs";
 import { ApiReminder } from "../../models/api/api-reminder.model";
 import { Reminder } from "../../models/reminder.model";
 
@@ -24,6 +24,7 @@ export class ReminderApiService {
     let result = this.http.get<ApiReminder[]>(
       GlobalConstants.apiReminderUrl + `/${contactUid}`
     );
+
     this._notifySubscribers(result);
     return result;
   }
@@ -39,8 +40,11 @@ export class ReminderApiService {
   }
 
   private _notifySubscribers(observable: Observable<ApiReminder[]>) {
-    observable.subscribe((apiReminders) =>
-      this._subscribers.forEach((observer) => observer.next?.(apiReminders))
-    );
+    observable.subscribe({
+      next: (apiReminders) =>
+        this._subscribers.forEach((observer) => observer.next?.(apiReminders)),
+      error: (err) =>
+        this._subscribers.forEach((observer) => observer.error?.(err)),
+    });
   }
 }
