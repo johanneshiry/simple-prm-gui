@@ -1,75 +1,36 @@
 import { Injectable } from "@angular/core";
 import { Contact } from "../models/contact.model";
-import { Reminder } from "../models/reminder.model";
-import { ReminderApiService } from "./api/reminder-api.service";
-import { ApiReminder } from "../models/api/reminder.model";
 import { VCard4 } from "vcard4-ts";
-import { forkJoin, map, Observable } from "rxjs";
-
-interface Storage {
-  vCard: VCard4;
-  reminders: Reminder[];
-}
+import { Observable } from "rxjs";
+import { of } from "rxjs";
 
 @Injectable({
   providedIn: "root",
 })
 export class ContactDetailsService {
-  private storageStruct(vCard: VCard4, reminders: Reminder[]): Storage {
-    return {
-      vCard: vCard,
-      reminders: reminders,
-    };
+  private _contactStorageKey: string = "contact";
+
+  constructor() {}
+
+  storeContact(contact: Contact): Observable<string | undefined> {
+    this.store(contact.vCard);
+    return of(contact.fn);
   }
 
-  fetchAdditionalDataAndStore(
-    contact: Contact
-  ): Observable<String | undefined> {
-    return forkJoin(this.fetchAdditionalContactData(contact)).pipe(
-      map(([reminders]) => {
-        this.store(contact.vCard, reminders);
-        return contact.fn;
-      })
-    );
+  private store(vCard: VCard4) {
+    localStorage.setItem(this._contactStorageKey, JSON.stringify(vCard));
   }
 
-  private store(vCard: VCard4, reminders: Reminder[]) {
-    localStorage.setItem(
-      this._contactStorageKey,
-      JSON.stringify(this.storageStruct(vCard, reminders))
-    );
-  }
-
-  private read(): undefined | Storage {
+  private read(): undefined | VCard4 {
     let storedContact = localStorage.getItem(this._contactStorageKey);
     if (storedContact != undefined) {
-      return <Storage>JSON.parse(storedContact);
+      return <VCard4>JSON.parse(storedContact);
     }
     return undefined;
   }
 
-  private _contactStorageKey: string = "contact";
-
-  constructor(private reminderService: ReminderApiService) {}
-
-  fetchAdditionalContactData(contact: Contact) {
-    return [this.fetchReminders(contact)];
-  }
-
-  private fetchReminders(contact: Contact): Observable<ApiReminder[]> {
-    return this.reminderService.get(contact.uid);
-  }
-
-  get reminder(): Reminder[] {
-    let storedData = this.read();
-    if (storedData != undefined) {
-      return storedData.reminders;
-    }
-    return [];
-  }
-
   get contact() {
-    let storedContactVCard = this.read()!.vCard;
+    let storedContactVCard = this.read()!;
     return new Contact(storedContactVCard);
   }
 

@@ -13,14 +13,12 @@ export class ContactDetailComponent implements OnInit, OnDestroy {
   @Input() contact: Contact;
 
   avatarBackgroundColor = "secondary";
-  reminders: Reminder[];
 
   constructor(
     private route: ActivatedRoute,
     private contactDetailsService: ContactDetailsService
   ) {
     this.contact = contactDetailsService.contact;
-    this.reminders = contactDetailsService.reminder;
     this.setRouteTitle();
   }
 

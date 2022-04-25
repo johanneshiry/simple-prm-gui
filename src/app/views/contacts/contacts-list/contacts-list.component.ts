@@ -59,7 +59,7 @@ export class ContactsListComponent implements OnInit {
 
     // prepare contact data to be passed to detail page
     this.contactDetailsService
-      .fetchAdditionalDataAndStore(contact)
+      .storeContact(contact)
       .subscribe((maybeContactFN) => {
         if (maybeContactFN != undefined) {
           this.router.navigate(["contacts/" + contact.fn]).catch(console.error);
