@@ -1,0 +1,107 @@
+<c-modal
+  id="reminderDetails"
+  [visible]="show"
+  (visibleChange)="handleReminderDetailsChange($event)"
+>
+  <c-modal-header>
+    <h5 cModalTitle>{{ modalTitle }}</h5>
+    <button (click)="handleReminderDetailsChange(false)" cButtonClose></button>
+  </c-modal-header>
+  <c-modal-body>
+    <c-container>
+      <form>
+        <c-row class="align-items-center m-2">
+          <c-col [xs]="4">Date</c-col>
+          <c-col [xs]="8">
+            <c-input-group class="has-validation">
+              <input
+                #yearMonthDateInput
+                class="form-control"
+                placeholder="yyyy-mm-dd"
+                name="dp"
+                [(ngModel)]="model"
+                ngbDatepicker
+                #d="ngbDatepicker"
+                aria-describedby="inputGroupPrepend"
+                required
+              />
+              <button
+                class="btn btn-outline-secondary calendar"
+                (click)="d.toggle()"
+                type="button"
+              >
+                <svg cIcon="" name="cil-calendar" size="auto"></svg>
+              </button>
+            </c-input-group>
+          </c-col>
+        </c-row>
+        <c-row class="align-items-center m-2">
+          <c-col [xs]="4">Interval</c-col>
+          <c-col [xs]="8">
+            <c-row>
+              <c-col [xs]="4">
+                <input
+                  #intervalValueInput
+                  cFormControl
+                  type="number"
+                  value="1"
+                  min="1"
+                />
+              </c-col>
+              <c-col [xs]="8">
+                <c-dropdown variant="btn-group">
+                  <button
+                    #selectedReminderButton
+                    cButton
+                    cDropdownToggle
+                    color="secondary"
+                  >
+                    {{
+                      selectedReminderIntervalUnit
+                        ? defaultReminderIntervalUnit
+                        : defaultReminderIntervalUnit
+                    }}
+                  </button>
+                  <ul cDropdownMenu>
+                    <li>
+                      <button
+                        cDropdownItem
+                        *ngFor="let unit of reminderIntervalUnits"
+                        (click)="selectedReminderButton.textContent = unit"
+                      >
+                        {{ unit }}
+                      </button>
+                    </li>
+                  </ul>
+                </c-dropdown>
+              </c-col>
+            </c-row>
+          </c-col>
+        </c-row>
+      </form>
+    </c-container>
+  </c-modal-body>
+  <c-modal-footer>
+    <button
+      (click)="handleReminderDetailsChange(false)"
+      cButton
+      color="secondary"
+    >
+      Close
+    </button>
+    <button
+      cButton
+      color="primary"
+      type="submit"
+      (click)="
+        validateAndSaveReminder(
+          intervalValueInput.value,
+          selectedReminderButton.textContent,
+          yearMonthDateInput.value
+        )
+      "
+    >
+      Save
+    </button>
+  </c-modal-footer>
+</c-modal>

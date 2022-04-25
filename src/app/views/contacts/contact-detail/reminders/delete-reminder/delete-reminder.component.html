@@ -1,0 +1,25 @@
+<c-modal
+  id="deleteReminder"
+  [visible]="show"
+  (visibleChange)="handleDeleteReminderChange($event)"
+>
+  <c-modal-header>
+    <h5 cModalTitle>Delete Reminder</h5>
+    <button (click)="handleDeleteReminderChange(false)" cButtonClose></button>
+  </c-modal-header>
+  <c-modal-body>
+    <div>
+      <label><strong>Uid:</strong></label> {{ selectedReminder?.lastContacted }}
+    </div>
+  </c-modal-body>
+  <c-modal-footer>
+    <button
+      (click)="handleDeleteReminderChange(false)"
+      cButton
+      color="secondary"
+    >
+      Close
+    </button>
+    <button cButton color="danger">Delete Reminder</button>
+  </c-modal-footer>
+</c-modal>

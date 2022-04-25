@@ -8,6 +8,8 @@ import {
   AvatarModule,
   ButtonModule,
   CardModule,
+  DropdownModule,
+  FormModule,
   GridModule,
   ListGroupModule,
   ModalModule,
@@ -18,9 +20,23 @@ import {
 } from "@coreui/angular";
 import { ContactDetailComponent } from "./contact-detail/contact-detail.component";
 import { IconModule } from "@coreui/icons-angular";
+import {
+  NgbAlertModule,
+  NgbDatepickerModule,
+} from "@ng-bootstrap/ng-bootstrap";
+import { FormsModule } from "@angular/forms";
+import { ReminderDetailComponent } from "./contact-detail/reminders/reminder-detail/reminder-detail.component";
+import { RemindersComponent } from "./contact-detail/reminders/reminders.component";
+import { DeleteReminderComponent } from "./contact-detail/reminders/delete-reminder/delete-reminder.component";
 
 @NgModule({
-  declarations: [ContactsListComponent, ContactDetailComponent],
+  declarations: [
+    ContactsListComponent,
+    ContactDetailComponent,
+    ReminderDetailComponent,
+    RemindersComponent,
+    DeleteReminderComponent,
+  ],
   imports: [
     CommonModule,
     ContactsRoutingModule,
@@ -36,6 +52,11 @@ import { IconModule } from "@coreui/icons-angular";
     AccordionModule,
     SharedModule,
     IconModule,
+    NgbAlertModule,
+    FormsModule,
+    NgbDatepickerModule,
+    DropdownModule,
+    FormModule,
   ],
 })
 export class ContactsModule {}
