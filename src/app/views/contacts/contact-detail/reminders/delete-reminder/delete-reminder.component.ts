@@ -3,6 +3,7 @@ import { Reminder } from "../../../../../models/reminder.model";
 import { ReminderApiService } from "../../../../../services/api/reminder-api.service";
 import { ToasterComponent } from "@coreui/angular";
 import { ToastNotificationUtil } from "../../../../common/toast-notification/toast-notification.util";
+import { ApiUtil } from "../../../../../services/api/api-util";
 
 @Component({
   selector: "app-delete-reminder[selectedReminder]",
@@ -27,32 +28,33 @@ export class DeleteReminderComponent implements OnInit {
 
   deleteReminder(): void {
     if (this.selectedReminder) {
-      this.reminderApiService.delete(this.selectedReminder.uuid).subscribe({
-        next: () => {
-          ToastNotificationUtil.success(
-            "Deletion successful",
-            "Successfully deleted reminder!",
-            this.queryResultToast
-          );
-        },
-        error: (err) => {
-          ToastNotificationUtil.failure(
-            "Deletion failed",
-            "Cannot delete reminder! Error: " + JSON.stringify(err),
-            this.queryResultToast
-          );
-        },
-      });
+      this.reminderApiService
+        .delete(this.selectedReminder.uuid)
+        .subscribe({
+          next: () =>
+            ToastNotificationUtil.success(
+              "Deletion successful",
+              "Successfully deleted reminder!",
+              this.queryResultToast
+            ),
+          error: (err) =>
+            ToastNotificationUtil.failure(
+              "Deletion failed",
+              "Cannot delete reminder! Error: " +
+                ApiUtil.errorString(err.error),
+              this.queryResultToast
+            ),
+        })
+        .add(() =>
+          // query the current state of contact reminders
+          this.reminderApiService.get(this.selectedReminder!.contactId)
+        );
     } else {
       ToastNotificationUtil.failure(
         "Deletion failed",
         "Cannot delete reminder, as no reminder is currently selected!",
         this.queryResultToast
       );
-    }
-
-    if (this.selectedReminder) {
-      this.reminderApiService.get(this.selectedReminder.contactId);
     }
 
     this.handleDeleteReminderChange(false);

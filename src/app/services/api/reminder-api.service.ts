@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
-import { HttpClient, HttpErrorResponse } from "@angular/common/http";
+import { HttpClient } from "@angular/common/http";
 import { GlobalConstants } from "../../common/global-constants";
-import { catchError, Observable, Observer, of, throwError } from "rxjs";
+import { catchError, Observable, Observer, of } from "rxjs";
 import { ApiReminder } from "../../models/api/api-reminder.model";
 import { Reminder } from "../../models/reminder.model";
 
@@ -13,10 +13,10 @@ export class ReminderApiService {
 
   constructor(private http: HttpClient) {}
 
-  create(stayInTouch: Reminder) {
+  create(reminder: Reminder) {
     return this.http.post<Reminder>(
       GlobalConstants.apiReminderUrl + "/",
-      stayInTouch
+      ApiReminder.fromReminder(reminder)
     );
   }
 

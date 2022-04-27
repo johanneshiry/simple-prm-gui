@@ -27,7 +27,7 @@
       <div cListGroup flush>
         <div cListGroupItem>
           <c-row class="align-items-start">
-            <c-col [xs]="3"><h6>Created</h6></c-col>
+            <c-col [xs]="3"><h6>Date</h6></c-col>
             <c-col [xs]="3"><h6>Interval</h6></c-col>
             <c-col [xs]="2"><h6>Type</h6></c-col>
             <c-col [xs]="3"><h6>Last Sent</h6></c-col>
@@ -40,9 +40,9 @@
           *ngFor="let reminder of reminders"
         >
           <c-row class="align-items-center">
-            <c-col [xs]="3">{{ reminder.contactId }}</c-col>
-            <c-col [xs]="3">{{ reminder.contactInterval }}</c-col>
-            <c-col [xs]="2">{{ reminder.lastContacted }}</c-col>
+            <c-col [xs]="3">{{ reminder.firstContactDate }}</c-col>
+            <c-col [xs]="3">{{ reminder.contactIntervalHumanReadable }}</c-col>
+            <c-col [xs]="2">{{ reminder.type }}</c-col>
             <c-col [xs]="3">{{ reminder.lastContacted }}</c-col>
             <c-col [xs]="1">
               <a (click)="toggleDeleteReminder(reminder)" class="trash-link">

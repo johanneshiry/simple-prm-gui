@@ -1,7 +1,21 @@
-import { Component, Input, OnInit } from "@angular/core";
+import {
+  Component,
+  Input,
+  OnChanges,
+  OnInit,
+  SimpleChanges,
+  ViewChild,
+} from "@angular/core";
 import { Reminder } from "../../../../../models/reminder.model";
 import { ReminderDetailConstants } from "./reminder-detail-constants";
-import { NgbDateStruct } from "@ng-bootstrap/ng-bootstrap";
+import { ReminderApiService } from "../../../../../services/api/reminder-api.service";
+import { ToastNotificationUtil } from "../../../../common/toast-notification/toast-notification.util";
+import { ToasterComponent } from "@coreui/angular";
+import { DurationUtil } from "../../../../../common/duration-util";
+import { LocalDateTime, ZonedDateTime } from "@js-joda/core";
+import { NgForm } from "@angular/forms";
+import { ApiUtil } from "../../../../../services/api/api-util";
+import { ApiReminder } from "../../../../../models/api/api-reminder.model";
 
 @Component({
   selector: "app-reminder-detail[selectedReminder]",
@@ -10,103 +24,166 @@ import { NgbDateStruct } from "@ng-bootstrap/ng-bootstrap";
 })
 export class ReminderDetailComponent
   extends ReminderDetailConstants
-  implements OnInit
+  implements OnInit, OnChanges
 {
+  @ViewChild(ToasterComponent) queryResultToast!: ToasterComponent;
+
   @Input()
   selectedReminder?: Reminder;
   show: boolean = false;
-  modalTitle?: string;
-
-  selectedReminderIntervalUnit?: string;
+  editOrCreate: string = "Edit";
+  modalTitle: string = this.editOrCreate + " Reminder";
 
   customStylesValidated = false;
 
-  constructor() {
+  selectedReminderFormData = this._selectedReminderFormData();
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes["selectedReminder"].currentValue) {
+      this.selectedReminderFormData = this._selectedReminderFormData();
+      this.customStylesValidated = false;
+    }
+  }
+
+  private _selectedReminderFormData() {
+    if (this.selectedReminder) {
+      let formDuration = DurationUtil.toInputFormRepresentation(
+        this.selectedReminder.contactInterval
+      );
+      let formDate = this.selectedReminder.firstContactDate.toLocalDate();
+      return {
+        interval: {
+          availableUnits: this.reminderIntervalUnits.filter(
+            (intervalUnit) => intervalUnit != formDuration.unit
+          ),
+          unit: formDuration.unit,
+          formVal: formDuration.value,
+        },
+        date: {
+          year: formDate.year(),
+          month: formDate.monthValue(),
+          day: formDate.dayOfMonth(),
+        },
+      };
+    } else {
+      return {
+        interval: {
+          availableUnits: this.reminderIntervalUnits.filter(
+            (intervalUnit) => intervalUnit != this.defaultReminderIntervalUnit
+          ),
+          unit: this.defaultReminderIntervalUnit,
+          formVal: 1,
+        },
+        date: {
+          year: LocalDateTime.now().year(),
+          month: LocalDateTime.now().monthValue(),
+          day: LocalDateTime.now().dayOfMonth(),
+        },
+      };
+    }
+  }
+
+  formDateString(date: { year: number; month: number; day: number }) {
+    return `${date.year}-${date.month < 10 ? "0" + date.month : date.month}-${
+      date.day < 10 ? "0" + date.day : date.day
+    }`;
+  }
+
+  constructor(private reminderApiService: ReminderApiService) {
     super();
   }
 
   ngOnInit(): void {}
 
-  handleReminderDetailsChange(visible: boolean) {
+  handleReminderDetailsChange(visible: boolean, reminderDetailForm?: NgForm) {
     this.show = visible;
-    this.selectedReminderIntervalUnit = visible
-      ? this.selectedReminderIntervalUnit
-      : this.defaultReminderIntervalUnit;
+    if (!visible) {
+      this._resetFormValuesToDefaults(reminderDetailForm);
+    }
   }
 
-  save() {
+  private _resetFormValuesToDefaults(reminderDetailForm?: NgForm) {
+    if (reminderDetailForm) {
+      reminderDetailForm.resetForm();
+      reminderDetailForm.form
+        .get("datepicker")
+        ?.setValue(this.selectedReminderFormData.date);
+      reminderDetailForm.form
+        .get("interval_value")
+        ?.setValue(this.selectedReminderFormData.interval.formVal);
+      reminderDetailForm.form
+        .get("interval_unit")
+        ?.setValue(this.selectedReminderFormData.interval.unit);
+    }
+  }
+
+  onSubmit(event: any, reminderDetailForm: NgForm) {
     this.customStylesValidated = true;
+    if (reminderDetailForm.valid && this.selectedReminder) {
+      this._save(
+        this.editOrCreate == "Edit" ? "Adapting" : "Creation",
+        this.selectedReminder.uuid,
+        this.selectedReminder.contactId,
+        this.selectedReminder.type,
+        this.selectedReminder.lastContacted,
+        this.formDateString(reminderDetailForm.value.datepicker),
+        reminderDetailForm.value.interval_value,
+        reminderDetailForm.value.interval_unit
+      )?.add(() => {
+        // query the current state of contact reminders
+        this.reminderApiService.get(this.selectedReminder!.contactId);
+        this.handleReminderDetailsChange(false, reminderDetailForm);
+      });
+    }
   }
 
-  validateAndSaveReminder(
-    intervalValue: string | null,
-    intervalUnit: string | null,
-    yearMonthDate: string | null
+  private _save(
+    adaptionOrCreation: string,
+    uuid: string,
+    contactId: string,
+    type: string,
+    lastContacted: ZonedDateTime,
+    selectedDate: string,
+    intervalVal: string,
+    intervalUnit: string
   ) {
-    // let validReminder: Reminder | { error: string } = this.validate(
-    //   intervalValue,
-    //   intervalUnit,
-    //   yearMonthDate
-    // );
-    // if (!("error" in validReminder)) {
-    //   // hide
-    //   this.handleReminderDetailsChange(false);
-    //
-    //   // save
-    //   // todo as observable
-    //
-    //   // query and reload reminder afterwards
-    //   // todo as subscribe
-    // } else {
-    //   console.log(validReminder.error);
-    // }
-  }
+    let interval = DurationUtil.fromStrings(intervalVal, intervalUnit);
+    let adaptOrCreate = adaptionOrCreation == "Adapting" ? "adapt" : "create";
+    let adaptedOrCreated =
+      adaptionOrCreation == "Adapting" ? "adapted" : "created";
 
-  // validate reminder form
-  // validate(
-  //     intervalValue: string | null,
-  //     intervalUnit: string | null,
-  //     yearMonthDate: string | null
-  // ): Reminder | { error: string } {
-  //   // interval value must be not null and must be a number
-  //   if (intervalValue == null || isNaN(+intervalValue)) {
-  //     return {
-  //       error:
-  //           "Interval value must be at least '1'. Current value: '" +
-  //           intervalValue +
-  //           "'",
-  //     };
-  //   }
-  //
-  //   let chronoUnit: ChronoUnit | undefined = undefined;
-  //   if (intervalUnit != null) {
-  //     chronoUnit = [...this._reminderIntervalUnits.entries()]
-  //         .reduce((acc, [k, v]) => {
-  //           acc.has(v) ? acc.set(v, acc.get(v).concat(k)) : acc.set(v, [k]);
-  //           return acc;
-  //         }, new Map())
-  //         .get(intervalUnit.trim());
-  //   }
-  //   if (!chronoUnit) {
-  //     return {
-  //       error: "Please select a valid unit!",
-  //     };
-  //   }
-  //
-  //   let date = undefined;
-  //   if (yearMonthDate != null && yearMonthDate.length > 0) {
-  //     date = Date.parse(yearMonthDate);
-  //   }
-  //   if (!date) {
-  //     return {
-  //       error: "Please provide a valid reminder date!",
-  //     };
-  //   }
-  //
-  //   return new Reminder({
-  //     contactId: this.contact.uid,
-  //     lastContacted: ZonedDateTime.now(), // todo
-  //     contactInterval: Duration.of(1, ChronoUnit.HOURS), // todo https://stackoverflow.com/questions/26454129/getting-duration-using-the-new-datetime-api
-  //   }); // todo
-  // }
+    if (interval) {
+      let date = ZonedDateTime.parse(new Date(selectedDate).toISOString());
+      return this.reminderApiService
+        .create(
+          new Reminder(uuid, contactId, type, date, interval, lastContacted)
+        )
+        .subscribe({
+          next: () =>
+            ToastNotificationUtil.success(
+              adaptionOrCreation + " successful",
+              "Successfully " + adaptedOrCreated + " reminder!",
+              this.queryResultToast
+            ),
+          error: (err) =>
+            ToastNotificationUtil.failure(
+              adaptionOrCreation + " failed",
+              "Cannot " +
+                adaptOrCreate +
+                " reminder! Error: " +
+                ApiUtil.errorString(err.error),
+              this.queryResultToast
+            ),
+        });
+    } else {
+      ToastNotificationUtil.failure(
+        adaptionOrCreation + " failed",
+        "Cannot " +
+          adaptOrCreate +
+          " reminder: parsing interval input value failed!",
+        this.queryResultToast
+      );
+      return undefined;
+    }
+  }
 }

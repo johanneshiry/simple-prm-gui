@@ -1,7 +1,8 @@
-import { Component, Inject, Input, OnInit, ViewChild } from "@angular/core";
+import { Component, Input, OnInit, ViewChild } from "@angular/core";
 import { Reminder } from "../../../../models/reminder.model";
-import { Duration, ZonedDateTime } from "@js-joda/core";
+import { Period, ZonedDateTime } from "@js-joda/core";
 import { ReminderApiService } from "../../../../services/api/reminder-api.service";
+import { v4 as uuidv4 } from "uuid";
 
 @Component({
   selector: "app-reminders[contactUid]",
@@ -37,7 +38,9 @@ export class RemindersComponent implements OnInit {
       next: (maybeReminders) => {
         this.reminders = undefined;
         if (maybeReminders) {
-          this.reminders = maybeReminders;
+          this.reminders = maybeReminders.map((apiReminder) =>
+            Reminder.fromApiReminder(apiReminder)
+          );
         } else {
           this.reminders = [];
         }
@@ -54,12 +57,14 @@ export class RemindersComponent implements OnInit {
 
   // create reminder
   createReminder(): Reminder {
-    return new Reminder({
-      uuid: "", // todo
-      contactId: this.contactUid,
-      lastContacted: ZonedDateTime.now(),
-      contactInterval: Duration.ofDays(1),
-    });
+    return new Reminder(
+      uuidv4(),
+      this.contactUid,
+      "Reminder",
+      ZonedDateTime.now(),
+      Period.ofDays(1),
+      ZonedDateTime.parse(new Date(0).toISOString())
+    );
   }
 
   private _toggleSelectedReminder(reminder: Reminder) {
@@ -70,7 +75,7 @@ export class RemindersComponent implements OnInit {
     if (!this._deleteReminder.show) {
       this._toggleSelectedReminder(reminder);
       this._reminderDetails.show = !this._reminderDetails.show;
-      this._reminderDetails.modalTitle = editOrCreate + " Reminder";
+      this._reminderDetails.editOrCreate = editOrCreate;
     }
   }
 

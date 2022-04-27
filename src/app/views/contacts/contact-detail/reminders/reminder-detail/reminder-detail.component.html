@@ -1,23 +1,27 @@
 <c-modal
   id="reminderDetails"
   [visible]="show"
-  (visibleChange)="handleReminderDetailsChange($event)"
+  (visibleChange)="handleReminderDetailsChange($event, f)"
 >
   <c-modal-header>
     <h5 cModalTitle>{{ modalTitle }}</h5>
-    <button (click)="handleReminderDetailsChange(false)" cButtonClose></button>
+    <button
+      (click)="handleReminderDetailsChange(false, f)"
+      cButtonClose
+    ></button>
   </c-modal-header>
   <c-modal-body>
     <c-container>
       <form
-        (ngSubmit)="save()"
+        (ngSubmit)="onSubmit($event, f)"
         [gutter]="3"
         [validated]="customStylesValidated"
         novalidate
         cForm
         cRow
         class="needs-validation"
-        id="reminder-form"
+        id="reminder_form"
+        #f="ngForm"
       >
         <c-row class="align-items-center m-2">
           <c-col [xs]="4">Date</c-col>
@@ -25,14 +29,14 @@
             <c-input-group class="has-validation">
               <input
                 class="form-control"
-                placeholder="yyyy-mm-dd"
-                name="dp"
+                [value]="formDateString(selectedReminderFormData.date)"
+                name="datepicker"
                 ngbDatepicker
                 #d="ngbDatepicker"
                 aria-describedby="inputGroupPrepend"
-                id="validationCustom02"
                 required
                 type="date"
+                [ngModel]="selectedReminderFormData.date"
               />
               <button
                 class="btn btn-outline-secondary calendar"
@@ -42,8 +46,8 @@
                 <svg cIcon="" name="cil-calendar" size="auto"></svg>
               </button>
               <c-form-feedback [valid]="false"
-                >Please provide a valid date!</c-form-feedback
-              >
+                >Please provide a valid date!
+              </c-form-feedback>
             </c-input-group>
           </c-col>
         </c-row>
@@ -55,42 +59,40 @@
                 <input
                   cFormControl
                   type="number"
-                  value="1"
+                  [value]="selectedReminderFormData.interval.formVal"
                   min="1"
-                  id="validationCustom03"
+                  max="12"
+                  name="interval_value"
                   required
+                  [ngModel]="selectedReminderFormData.interval.formVal"
                 />
                 <c-form-feedback [valid]="false"
-                  >Please select a valid interval unit!</c-form-feedback
-                >
+                  >Please select a valid interval unit!
+                </c-form-feedback>
               </c-col>
               <c-col [xs]="8">
-                <select cSelect id="validationCustom04" required>
-                  <option
-                    [value]="
-                      selectedReminderIntervalUnit
-                        ? defaultReminderIntervalUnit
-                        : defaultReminderIntervalUnit
-                    "
-                    #selectedReminderOption
-                  >
-                    {{
-                      selectedReminderIntervalUnit
-                        ? defaultReminderIntervalUnit
-                        : defaultReminderIntervalUnit
-                    }}
+                <select
+                  cSelect
+                  name="interval_unit"
+                  required
+                  [ngModel]="selectedReminderFormData.interval.unit"
+                >
+                  <option [value]="selectedReminderFormData.interval.unit">
+                    {{ selectedReminderFormData.interval.unit }}
                   </option>
                   <option
-                    *ngFor="let unit of reminderIntervalUnits"
-                    (click)="selectedReminderOption.textContent = unit"
+                    *ngFor="
+                      let unit of selectedReminderFormData.interval
+                        .availableUnits
+                    "
                     [value]="unit"
                   >
                     {{ unit }}
                   </option>
                 </select>
                 <c-form-feedback [valid]="false"
-                  >Please select a valid interval unit!</c-form-feedback
-                >
+                  >Please select a valid interval unit!
+                </c-form-feedback>
               </c-col>
             </c-row>
           </c-col>
@@ -100,7 +102,7 @@
   </c-modal-body>
   <c-modal-footer>
     <button
-      (click)="handleReminderDetailsChange(false)"
+      (click)="handleReminderDetailsChange(false, f)"
       cButton
       color="secondary"
     >
@@ -108,7 +110,7 @@
     </button>
     <button
       cButton
-      form="reminder-form"
+      form="reminder_form"
       class="me-1"
       color="primary"
       type="submit"
@@ -117,3 +119,6 @@
     </button>
   </c-modal-footer>
 </c-modal>
+
+<!--Query result toast-->
+<c-toaster class="p-3" position="fixed"></c-toaster>

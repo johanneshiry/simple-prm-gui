@@ -1,6 +1,4 @@
-import { NonEmptyArray, parseVCards, SingleVCardProperty } from "vcard4-ts";
 import { VCard4 } from "vcard4-ts/src/vcard4Types";
-import { ApiContact } from "./api/api-contact.model";
 import { ContactDetailHelper } from "../views/contacts/contact-detail/contact-detail-helper";
 
 export class Contact extends ContactDetailHelper {

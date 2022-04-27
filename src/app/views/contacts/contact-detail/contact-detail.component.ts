@@ -1,7 +1,6 @@
 import { Component, Input, OnDestroy, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { Contact } from "../../../models/contact.model";
-import { Reminder } from "../../../models/reminder.model";
 import { ContactDetailsService } from "../../../services/contact-details.service";
 
 @Component({
