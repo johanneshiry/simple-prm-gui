@@ -1,6 +1,5 @@
 import { Duration, Period, Temporal, ZonedDateTime } from "@js-joda/core";
 import { ApiReminder } from "./api/api-reminder.model";
-import { parse } from "tinyduration";
 import { DurationUtil } from "../common/duration-util";
 
 export class Reminder {
