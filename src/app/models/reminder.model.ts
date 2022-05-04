@@ -1,40 +1,43 @@
-import { Duration, Period, Temporal, ZonedDateTime } from "@js-joda/core";
+import { LocalDate, Period } from "@js-joda/core";
 import { ApiReminder } from "./api/api-reminder.model";
 import { DurationUtil } from "../common/duration-util";
 
 export class Reminder {
   private _uuid: string;
   private readonly _contactId: string;
-  private readonly _firstContactDate: ZonedDateTime;
-  private readonly _contactInterval: Period;
-  private readonly _lastContacted: ZonedDateTime;
-  private _type: string;
+  private readonly _reminderDate: LocalDate;
+  private readonly _reminderInterval: Period;
+  private readonly _lastTimeReminded: LocalDate;
+  private readonly _reminderType: string;
+  private readonly _reason: string;
 
   constructor(
     uuid: string,
     contactId: string,
-    type: string,
-    firstContactDate: ZonedDateTime,
-    contactInterval: Period,
-    lastContacted: ZonedDateTime
+    reminderType: string,
+    reminderDate: LocalDate,
+    reminderInterval: Period,
+    lastTimeReminded: LocalDate,
+    reason: string
   ) {
     this._uuid = uuid;
     this._contactId = contactId;
-    this._type = type;
-    this._firstContactDate = firstContactDate;
-    this._lastContacted = lastContacted;
-    this._contactInterval = Period.ofDays(contactInterval.days());
+    this._reminderType = reminderType;
+    this._reminderDate = reminderDate;
+    this._lastTimeReminded = lastTimeReminded;
+    this._reminderInterval = Period.ofDays(reminderInterval.days());
+    this._reason = reason;
   }
 
   static fromApiReminder(apiReminder: ApiReminder): Reminder {
     return new Reminder(
       apiReminder.uuid,
       apiReminder.contactId,
-      "Reminder", // todo
-      // ZonedDateTime.parse(apiReminder.firstContactDate), // todo
-      ZonedDateTime.now(), // todo
-      DurationUtil.parsePeriod(apiReminder.contactInterval),
-      ZonedDateTime.parse(apiReminder.lastContacted)
+      apiReminder.reminderType,
+      LocalDate.parse(apiReminder.reminderDate),
+      DurationUtil.parsePeriod(apiReminder.reminderInterval),
+      LocalDate.parse(apiReminder.lastTimeReminded),
+      apiReminder.reason
     );
   }
 
@@ -46,31 +49,31 @@ export class Reminder {
     this._uuid = value;
   }
 
-  get contactInterval(): Period {
-    return this._contactInterval;
+  get reminderInterval(): Period {
+    return this._reminderInterval;
   }
 
   get contactIntervalHumanReadable(): String {
-    return DurationUtil.periodDisplayString(this._contactInterval);
+    return DurationUtil.periodDisplayString(this._reminderInterval);
   }
 
-  get lastContacted(): ZonedDateTime {
-    return this._lastContacted;
+  get lastTimeReminded(): LocalDate {
+    return this._lastTimeReminded;
   }
 
   get contactId(): string {
     return this._contactId;
   }
 
-  get firstContactDate(): ZonedDateTime {
-    return this._firstContactDate;
+  get reminderDate(): LocalDate {
+    return this._reminderDate;
   }
 
-  get type(): string {
-    return this._type;
+  get reminderType(): string {
+    return this._reminderType;
   }
 
-  set type(value: string) {
-    this._type = value;
+  get reason(): string {
+    return this._reason;
   }
 }

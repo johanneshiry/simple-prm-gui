@@ -1,6 +1,6 @@
 import { Component, Input, OnInit, ViewChild } from "@angular/core";
 import { Reminder } from "../../../../models/reminder.model";
-import { Period, ZonedDateTime } from "@js-joda/core";
+import { LocalDate, Period } from "@js-joda/core";
 import { ReminderApiService } from "../../../../services/api/reminder-api.service";
 import { v4 as uuidv4 } from "uuid";
 
@@ -60,10 +60,11 @@ export class RemindersComponent implements OnInit {
     return new Reminder(
       uuidv4(),
       this.contactUid,
-      "Reminder",
-      ZonedDateTime.now(),
+      "StayInTouch", // todo
+      LocalDate.now(),
       Period.ofDays(1),
-      ZonedDateTime.parse(new Date(0).toISOString())
+      LocalDate.of(1970, 1, 1),
+      ""
     );
   }
 

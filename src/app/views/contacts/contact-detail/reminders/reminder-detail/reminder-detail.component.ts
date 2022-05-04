@@ -12,10 +12,9 @@ import { ReminderApiService } from "../../../../../services/api/reminder-api.ser
 import { ToastNotificationUtil } from "../../../../common/toast-notification/toast-notification.util";
 import { ToasterComponent } from "@coreui/angular";
 import { DurationUtil } from "../../../../../common/duration-util";
-import { LocalDateTime, ZonedDateTime } from "@js-joda/core";
+import { LocalDate, LocalDateTime } from "@js-joda/core";
 import { NgForm } from "@angular/forms";
 import { ApiUtil } from "../../../../../services/api/api-util";
-import { ApiReminder } from "../../../../../models/api/api-reminder.model";
 
 @Component({
   selector: "app-reminder-detail[selectedReminder]",
@@ -48,9 +47,9 @@ export class ReminderDetailComponent
   private _selectedReminderFormData() {
     if (this.selectedReminder) {
       let formDuration = DurationUtil.toInputFormRepresentation(
-        this.selectedReminder.contactInterval
+        this.selectedReminder.reminderInterval
       );
-      let formDate = this.selectedReminder.firstContactDate.toLocalDate();
+      let formDate = this.selectedReminder.reminderDate;
       return {
         interval: {
           availableUnits: this.reminderIntervalUnits.filter(
@@ -124,8 +123,8 @@ export class ReminderDetailComponent
         this.editOrCreate == "Edit" ? "Adapting" : "Creation",
         this.selectedReminder.uuid,
         this.selectedReminder.contactId,
-        this.selectedReminder.type,
-        this.selectedReminder.lastContacted,
+        this.selectedReminder.reminderType,
+        this.selectedReminder.lastTimeReminded,
         this.formDateString(reminderDetailForm.value.datepicker),
         reminderDetailForm.value.interval_value,
         reminderDetailForm.value.interval_unit
@@ -142,7 +141,7 @@ export class ReminderDetailComponent
     uuid: string,
     contactId: string,
     type: string,
-    lastContacted: ZonedDateTime,
+    lastContacted: LocalDate,
     selectedDate: string,
     intervalVal: string,
     intervalUnit: string
@@ -153,10 +152,10 @@ export class ReminderDetailComponent
       adaptionOrCreation == "Adapting" ? "adapted" : "created";
 
     if (interval) {
-      let date = ZonedDateTime.parse(new Date(selectedDate).toISOString());
+      let date = LocalDate.parse(selectedDate);
       return this.reminderApiService
         .create(
-          new Reminder(uuid, contactId, type, date, interval, lastContacted)
+          new Reminder(uuid, contactId, type, date, interval, lastContacted, "") // todo
         )
         .subscribe({
           next: () =>

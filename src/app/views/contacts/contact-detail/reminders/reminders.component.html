@@ -1,7 +1,7 @@
 <!--Default loading during reminder fetch or init-->
 <div *ngIf="!reminders">
   <c-row class="align-items-center justify-content-center">
-    <c-col xs="12" class="align-self-center text-center p-5">
+    <c-col [xs]="12" class="align-self-center text-center p-5">
       <c-col>
         <c-spinner></c-spinner>
       </c-col>
@@ -40,10 +40,10 @@
           *ngFor="let reminder of reminders"
         >
           <c-row class="align-items-center">
-            <c-col [xs]="3">{{ reminder.firstContactDate }}</c-col>
+            <c-col [xs]="3">{{ reminder.reminderDate }}</c-col>
             <c-col [xs]="3">{{ reminder.contactIntervalHumanReadable }}</c-col>
-            <c-col [xs]="2">{{ reminder.type }}</c-col>
-            <c-col [xs]="3">{{ reminder.lastContacted }}</c-col>
+            <c-col [xs]="2">{{ reminder.reminderType }}</c-col>
+            <c-col [xs]="3">{{ reminder.lastTimeReminded }}</c-col>
             <c-col [xs]="1">
               <a (click)="toggleDeleteReminder(reminder)" class="trash-link">
                 <svg cIcon="" name="cilTrash" size="xl"></svg>
