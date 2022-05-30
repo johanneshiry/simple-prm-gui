@@ -259,3 +259,5 @@ dist
 .pnp.*
 
 .angular
+
+*.conf
