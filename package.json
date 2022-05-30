@@ -31,7 +31,6 @@
     "@js-joda/core": "^5.2.0",
     "@js-joda/timezone": "^2.12.0",
     "@ng-bootstrap/ng-bootstrap": "^11.0.1",
-    "@pushcorn/hocon-parser": "^1.1.18",
     "@types/uuid": "^8.3.4",
     "bootstrap": "^4.6.0",
     "chart.js": "^3.7.1",
