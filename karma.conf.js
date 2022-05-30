@@ -27,7 +27,7 @@ module.exports = function (config) {
     coverageReporter: {
       dir: require("path").join(
         __dirname,
-        "./coverage/coreui-free-angular-admin-template"
+        "./coverage/simple-prm-basic-gui"
       ),
       subdir: ".",
       reporters: [{ type: "html" }, { type: "text-summary" }],

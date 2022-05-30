@@ -1,10 +1,6 @@
 {
-  "name": "coreui-free-angular-admin-template",
-  "version": "4.0.0-beta.0",
-  "config": {
-    "coreui_library_short_version": "4.0",
-    "coreui_library_docs_url": "https://coreui.io/angular/docs/"
-  },
+  "name": "simple-prm-basic-gui",
+  "version": "0.1.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -35,6 +31,7 @@
     "@js-joda/core": "^5.2.0",
     "@js-joda/timezone": "^2.12.0",
     "@ng-bootstrap/ng-bootstrap": "^11.0.1",
+    "@pushcorn/hocon-parser": "^1.1.18",
     "@types/uuid": "^8.3.4",
     "bootstrap": "^4.6.0",
     "chart.js": "^3.7.1",
@@ -47,7 +44,7 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~13.3.0",
-    "@angular/cli": "~13.3.0",
+    "@angular/cli": "~13.3.4",
     "@angular/compiler-cli": "~13.3.0",
     "@angular/localize": "~13.3.0",
     "@types/jasmine": "~4.0.0",
